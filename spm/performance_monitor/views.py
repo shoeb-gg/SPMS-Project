@@ -4,9 +4,14 @@ from performance_monitor.models import Cse303ObeMarkSheetMarks
 
 
 # Create your views here.
-def showStudents(request):
-    students = Cse303ObeMarkSheetMarks.objects.raw("SELECT * FROM `cse303_obe_mark_sheet__marks_`")
+def showFaculty(request):
+    #students = Cse303ObeMarkSheetMarks.objects.raw("SELECT * FROM `cse303_obe_mark_sheet__marks_`")
 
     
-    return render(request, 'studentList.html', {'map': students})
+    return render(request, 'base.html')
      
+def showLogIn(request):
+    #students = Cse303ObeMarkSheetMarks.objects.raw("SELECT * FROM `cse303_obe_mark_sheet__marks_`")
+
+    
+    return render(request, 'logIn.html')
