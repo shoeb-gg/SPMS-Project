@@ -31,6 +31,7 @@ class Cse303ObeMarkSheetAnalysis(models.Model):
 
     class Meta:
         managed = False
+        
         db_table = 'cse303_obe_mark_sheet__analysis_'
 
 
