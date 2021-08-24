@@ -111,8 +111,6 @@ class Program_T(models.Model):
         return self.programName
 
 
-
-
 class Student_T(models.Model):
     studentID = models.CharField(max_length=7, primary_key=True)
     studentName = models.CharField(max_length=50, null=True)
@@ -132,11 +130,15 @@ class Student_T(models.Model):
 class Faculty_T(Employee_T):
     facultyID = models.IntegerField(primary_key=True)
     facultyName = models.CharField(max_length=50, null=True)
-    startDate = models.DateField(null=True)
+    dateOfBirth = models.DateField(null=True)
     department = models.ForeignKey(Department_T, on_delete=models.CASCADE)
-
+    address = models.CharField(max_length=50, null=True)
+    gender = models.CharField(max_length=6, null=True)
+    email = models.CharField(max_length=50, null=True)
+    phone = models.CharField(max_length=15, null=True)
+   
     def __str__(self):
-        return self.faculty
+        return self.facultyName
 
 
 class Course_T(models.Model):
@@ -174,7 +176,7 @@ class Section_T(models.Model):
 
 
     def __str__(self):
-        return str(self.sectionNum)
+        return str.sectionNum
 
 
 class Enrollment_T(models.Model):
@@ -185,7 +187,7 @@ class Enrollment_T(models.Model):
     year = models.IntegerField(default=2020,null=True)
 
     def __str__(self):
-        return str(self.registrationID)
+        return str.registrationID
 
 
 
@@ -195,6 +197,7 @@ class CO_T(models.Model):
     plo = models.ForeignKey(PLO_T, on_delete=models.CASCADE, default='N/A')
     course = models.ForeignKey(Course_T, on_delete=models.CASCADE, default='N/A')
     thresold = models.FloatField(default=40)
+    title = models.CharField(max_length=50)
 
     def __str__(self):
         return self.coNum
@@ -208,7 +211,6 @@ class Assessment_T(models.Model):
     totalMarks = models.FloatField()
     co = models.ForeignKey(CO_T, on_delete=models.CASCADE)
     section = models.ForeignKey(Section_T, on_delete=models.CASCADE)
-    weight = models.FloatField()
 
     def __str__(self):
         return self.assessmentName + " "+str(self.questionNum)
@@ -222,6 +224,6 @@ class Evaluation_T(models.Model):
     enrollment = models.ForeignKey(Registration_T, on_delete=models.CASCADE)
 
     def __str__(self):
-        return str(self.evaluationID)        
+        return str.evaluationID        
           
 
