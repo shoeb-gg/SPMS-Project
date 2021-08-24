@@ -24,14 +24,7 @@
   <body>
     <div class="wrapper d-flex align-items-stretch">
       <nav id="sidebar">
-        <div class="custom-menu bg-dark rounded">
-          <button
-            type="button"
-            id="sidebarCollapse"
-            class="navbar-toggler"
-          
-          ><span class="navbar-toggler-icon bg-info rounded text-white"></span></button>
-        </div>
+        
         <div
           class="img bg-wrap text-center py-4"
           style="background-image: url('{% static "images/bg_1.jpg"%}')"
@@ -71,15 +64,10 @@
       </nav>
 
       <!-- Page Content  -->
-      <div id="content" class="p-4 p-md-5 pt-5">
-        <h1 class="mb-4">ALL CONTENT GOES HERE !!</h1>
+      <div id="content" class="container-fluid bg-dark">
+        
         
       </div>
-    </div>
-
-    <script src=" {% static 'js/jquery.min.js'%}"></script>
-    <script src=" {% static 'js/popper.js'%}"></script>
-    <script src=" {% static 'js/bootstrap.min.js' %}"></script>
-    <script src=" {% static 'js/main.js'%}"></script>
+    </div>   
   </body>
 </html>
