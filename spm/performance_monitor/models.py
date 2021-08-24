@@ -200,6 +200,7 @@ class CO_T(models.Model):
         return self.coNum
 
 
+
 class Assessment_T(models.Model):
     assessmentID = models.AutoField(primary_key=True)
     assessmentName = models.CharField(max_length=30)
