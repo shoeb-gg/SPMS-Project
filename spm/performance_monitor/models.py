@@ -106,6 +106,7 @@ class Program_T(models.Model):
     
     def __str__(self):
         return self.programName
+        
 
 class Student_T(models.Model):
     studentID = models.CharField(max_length=7, primary_key=True)
