@@ -70,4 +70,85 @@
        {%endblock content%}
     </div>   
   </body>
+  <script>
+    function coMap() {
+      var text = document.getElementById("coNumber").value;
+      var b = parseInt(text);
+      var htmlElements = "";
+      for (var i = 0; i < b; i++) {
+        htmlElements += `
+        <div class="d-flex justify-content-between">
+          <input
+            class="form-control mr-2 mb-3"
+            type="text"
+            placeholder="Enter the CO Number"
+          />
+          <input
+            class="form-control ml-2 mb-3"
+            type="text"
+            placeholder="Enter the Associated PLO Numbers"
+          />
+        </div>
+        `;        
+      }
+      var container = document.getElementById("mapSpace");
+      container.innerHTML = htmlElements;      
+    }
+
+    function studentsCreate() {
+      var stdnts = document.getElementById("totalStudents").value;
+      var qs = document.getElementById("totalQuestions").value;
+      var s = parseInt(stdnts);
+      var q = parseInt(qs);
+      var htmlElements = "";
+      for (var i = 0; i < s; i++) {
+        htmlElements += `
+        <div class="mt-5"> 
+          <h7 class="mr-1 text-white">Student ${i+1}:</h7>       
+          <input
+            class="form-control"
+            type="text"
+            placeholder="Enter the Student ID"
+          />
+        </div>
+        `;
+        for (var j = 0; j < q; j++) {
+          htmlElements += `
+          <div class="d-flex justify-content-between mt-2">
+            <h6 class="mr-1 mt-3 text-white">Q${j+1}:</h6>
+            <input class="form-control mr-1 ml-1 mt-2" type="text" placeholder="CO Number" />
+            <input
+              class="form-control mr-1 ml-1 mt-2"
+              type="text"
+              placeholder="Total for Question"
+            />
+            <input
+              class="form-control ml-1 mt-2"
+              type="text"
+              placeholder="% Threshold to Pass"
+            />
+          </div>
+          `;
+        }
+      }
+      htmlElements += `
+        <div class="d-flex justify-content-end">
+                <button
+                  class="rounded mt-3 btn-primary pl-5 pr-5 pt-1 pb-1"
+                  id="coGet"
+                  onclick="studentsCreate()"
+                  ;
+                  return
+                  false;
+                >
+                  Submit
+                </button>
+              </div>
+      `
+      var container = document.getElementById("studentSpace");
+      container.innerHTML = htmlElements;      
+    }
+
+
+  </script>
 </html>

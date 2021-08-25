@@ -7,9 +7,9 @@
         <div class="row">
           <div class="booking-form container-fluid w-75">
             <div class="form-header mt-4">
-              <h1 class="text-white d-flex justify-content-center">
+              <h2 class="text-white d-flex justify-content-center">
                 Assesment Details:
-              </h1>
+              </h2>
             </div>
             <form>
               <div class="row mb-2">
@@ -32,22 +32,7 @@
                   <option>03</option>
                 </select>
               </div>
-              <div class="form-group mt-4">
-                <h5 class="form-label text-white">Number Of Questions:</h5>
-                <input
-                  class="form-control"
-                  type="text"
-                  placeholder="Enter the number of questions"
-                />
-              </div>
-              <div class="form-group mt-4">
-                <h5 class="form-label text-white">Total Students:</h5>
-                <input
-                  class="form-control"
-                  type="text"
-                  placeholder="Enter the total number of students"
-                />
-              </div>
+
               <div class="form-group mt-4">
                 <h5 class="form-label text-white">Assessment Type:</h5>
                 <select class="form-control">
@@ -58,25 +43,81 @@
                 </select>
               </div>
 
-              <div class="form-btn mt-5">
-                <button class="submit-btn rounded">Submit</button>
+              <div class="d-flex justify-content-end">
+                <button class="rounded mt-1 btn-primary pl-5 pr-5 pt-1 pb-1">
+                  Submit
+                </button>
               </div>
             </form>
-            <form>
-              <div class="form-header mt-4">
-                <h1 class="text-white d-flex justify-content-center">
-                  Assesment Details:
-                </h1>
+
+            <div>
+              <div class="form-header mt-5 pt-2">
+                <h2 class="text-white d-flex justify-content-center">
+                  PLO-CO Mapping for the Assessment:
+                </h2>
               </div>
-              <div class="form-group mt-4">
+              <div class="form-group mt-3">
+                <h5 class="form-label text-white">Total COs to be mapped:</h5>
+                <input
+                  class="form-control"
+                  type="text"
+                  placeholder="Enter the total number of COs"
+                  id="coNumber"
+                />
+                <div class="d-flex justify-content-end">
+                  <button
+                    class="rounded mt-3 btn-primary pl-5 pr-5 pt-1 pb-1"
+                    id="coGet"
+                    onclick="coMap()"
+                    ;
+                    return
+                    false;
+                  >
+                    GO
+                  </button>
+                </div>
+              </div>
+              <div class="" id="mapSpace"></div>
+            </div>
+
+            <div>
+              <div class="form-header mt-5">
+                <h2 class="text-white d-flex justify-content-center">
+                  Assessment Performance of Each Student:
+                </h2>
+              </div>
+              <div class="form-group mt-2">
                 <h5 class="form-label text-white">Total Students:</h5>
                 <input
                   class="form-control"
                   type="text"
                   placeholder="Enter the total number of students"
+                  id="totalStudents"
                 />
               </div>
-            </form>
+              <div class="form-group mt-4">
+                <h5 class="form-label text-white">Number Of Questions:</h5>
+                <input
+                  class="form-control"
+                  type="text"
+                  placeholder="Enter the number of questions"
+                  id="totalQuestions"
+                />
+              </div>
+              <div class="d-flex justify-content-end">
+                <button
+                  class="rounded mt-1 btn-primary pl-5 pr-5 pt-1 pb-1"
+                  id="coGet"
+                  onclick="studentsCreate()"
+                  ;
+                  return
+                  false;
+                >
+                  GO
+                </button>
+              </div>
+            </div>
+            <div class="mb-5" id="studentSpace"></div>
           </div>
         </div>
       </div>
