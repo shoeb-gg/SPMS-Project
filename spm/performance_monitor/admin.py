@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import *
+
+from performance_monitor.models import *
 
 admin.site.register(Student_T)
 admin.site.register(Faculty_T)

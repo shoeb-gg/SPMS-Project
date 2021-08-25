@@ -80,7 +80,7 @@ class Meta:
 
 class University_T(models.Model):
     universityName = models.CharField(max_length=50, primary_key=True)
-    school = models.ForeignKey(School_T, on_delete=models.CASCADE)
+    school = models.ForeignKey('School_T', on_delete=models.CASCADE)
     
     def __str__(self):
         return self.universityName
@@ -127,7 +127,7 @@ class Student_T(models.Model):
     def __str__(self):
         return self.studentID   
 
-class Faculty_T(Employee_T):
+class Faculty_T(models.Model):
     facultyID = models.IntegerField(primary_key=True)
     facultyName = models.CharField(max_length=50, null=True)
     dateOfBirth = models.DateField(null=True)
@@ -221,7 +221,7 @@ class Evaluation_T(models.Model):
     evaluationID = models.AutoField(primary_key=True)
     obtainedMarks = models.FloatField()
     assessment = models.ForeignKey(Assessment_T, on_delete=models.CASCADE)
-    enrollment = models.ForeignKey(Registration_T, on_delete=models.CASCADE)
+    enrollment = models.ForeignKey(Enrollment_T, on_delete=models.CASCADE)
 
     def __str__(self):
         return str.evaluationID        
