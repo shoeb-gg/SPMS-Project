@@ -126,6 +126,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static/base"),
     os.path.join(BASE_DIR, "static/login"),
+    os.path.join(BASE_DIR, "static/inputForms"),
 ]
 
 # Default primary key field type
