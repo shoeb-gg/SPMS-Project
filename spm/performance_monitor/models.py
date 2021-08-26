@@ -82,10 +82,6 @@ class University_T(models.Model):
     universityName = models.CharField(max_length=50, primary_key=True)
     school = models.ForeignKey('School_T', on_delete=models.CASCADE)
     
-    def __str__(self):
-        return self.universityName
-        
-
 class School_T(models.Model):
     schoolID = models.CharField(max_length=5, primary_key=True)
     schoolName = models.CharField(max_length=50)
