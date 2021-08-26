@@ -1,6 +1,7 @@
 from django.shortcuts import render
 
 from performance_monitor.models import Cse303ObeMarkSheetMarks
+from graphquery import *
 
 
 # Create your views here.
@@ -15,3 +16,27 @@ def showLogIn(request):
 
     
     return render(request, 'logIn.html')
+
+# Student Dashboard
+@allowedUsers(allowedRoles=['Student'])
+def studentDashboard(request):
+    chartName = []
+    chartLabel = []
+    chartDataSet = []
+    
+    chartN = 'Student-wise PLO'
+    chartL = []
+    chartD = []
+    
+    student_id = request.user.username
+    print(str(student_id))
+    
+    row = getStudentWisePLO(student_id)
+    
+    for i in row:
+        chartL.append(i[1])
+        chartD.append(i[0])
+    
+    chartName.append(chartN)
+    chartLabel.append(chartL)
+    chartDataSet.append(chartD)
