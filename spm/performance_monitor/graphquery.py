@@ -1,38 +1,37 @@
 from django.db import connection
-import numpy as np 
 
 
-
-
-def getStudentWisePLO(studentID):
+def getStudentWisePLO(student_id):
     row = []
     for i in range(12):
-        ploNum = f'PLO{i+1}'
-        if i+1 >= 10:
-            ploNum = f'PLO{i+1}'
+        ploNum = f'PLO0{i + 1}'
+        if i + 1 >= 10:
+            ploNum = f'PLO{i + 1}'
         with connection.cursor() as cursor:
             cursor.execute('''
                 SELECT AVG(TotalPlo.PLOpercentage) AS ActualPlo
-                    FROM (SELECT (PLO / TotalComark * 100) AS PLOpercentage
-                           FROM (SELECT SUM(DISTINCT e.obtainedMarks) AS PLO, SUM(DISTINCT a.marks) AS TotalCoMark
-                                     FROM spm_enrollment_t en,
-                                           spm_evaluation_t e,
-                                           spm_assessment_t a,
-                                           spm_co_t c,
-                                           spm_plo_t p
+                FROM (
+                SELECT (PLO / TotalComark * 100) AS PLOpercentage
+                FROM (
+                        SELECT SUM(DISTINCT e.obtainedMarks) AS PLO, SUM(DISTINCT a.marks) AS TotalCoMark
+                        FROM performance_monitor_enrollment_t en,
+                            performance_monitor_evaluation_t e,
+                            performance_monitor_assessment_t a,
+                            performance_monitor_co_t c,
+                            performance_monitor_plo_t p
                         WHERE en.student_id = '{}'
-                            AND en.enrollmentID = e.enrollmentID
-                            AND e.assessmentID = a.assessmentNo
-                            AND a.coID = c.coID
-                            AND c.ploID = '{}'
-                        GROUP BY en.sectionID
+                            AND en.enrollmentID = e.enrollment_id
+                            AND e.assessment_id = a.assessmentNo
+                            AND a.co_id = c.id
+                            AND c.plo_id = '{}'
+                        GROUP BY en.section_id
                     ) ploPer
                 ) TotalPlo;
-            '''.format(studentID, ploNum))
+            '''.format(student_id, ploNum))
             temp = cursor.fetchone()
             if temp is not None:
                 row.append((temp[0], ploNum))
-    return row    
+    return row
 
 def getDepartmentWisePLO(departmentID):
     row = []
@@ -47,12 +46,12 @@ def getDepartmentWisePLO(departmentID):
                     SELECT (PLO / TotalComark * 100) AS PLOpercentage
                         FROM (
                             SELECT SUM(e.obtainedMarks) AS PLO, SUM(a.marks) AS TotalCoMark
-                            FROM spm_enrollment_t en,
-                                spm_evaluation_t e,
-                                spm_assessment_t a,
-                                spm_co_t c,
-                                spm_plo_t p,
-                                spm_student_t st
+                            FROM performance_monitor_enrollment_t en,
+                                performance_monitor_evaluation_t e,
+                                performance_monitor_assessment_t a,
+                                performance_monitor_co_t c,
+                                performance_monitor_plo_t p,
+                                performance_monitor_student_t st
                             WHERE st.department_id = '{}'
                             AND st.studentID = en.student_id
                             AND en.enrollmentID = e.enrollmentID
@@ -81,12 +80,12 @@ def getUniversityWisePLO(UniversitytName):
                     SELECT (PLO / TotalComark * 100) AS PLOpercentage
                         FROM (
                             SELECT SUM(e.obtainedMarks) AS PLO, SUM(a.marks) AS TotalCoMark
-                            FROM spm_enrollment_t en,
-                                spm_evaluation_t e,
-                                spm_assessment_t a,
-                                spm_co_t c,
-                                spm_plo_t p,
-                                spm_student_t st
+                            FROM performance_monitor_enrollment_t en,
+                                performance_monitor_evaluation_t e,
+                                performance_monitor_assessment_t a,
+                                performance_monitor_co_t c,
+                                performance_monitor_plo_t p,
+                                performance_monitor_student_t st
                             WHERE st.university_name = '{}'
                             AND st.studentID = en.studentID
                             AND en.enrollmentID = e.enrollmentID
@@ -113,16 +112,16 @@ def getNoOfPLOAchieved(studentID):
             SELECT COUNT(TotalPlo.PLOpercentage) AS Acheive
             FROM (
                     SELECT   studentID,(PLO / TotalComark * 100) AS PLOpercentage
-                    FROM spm_plo_t p,
-                         spm_co_t c,
+                    FROM performance_monitor_plo_t p,
+                         performance_monitor_co_t c,
                         (
                             SELECT en.studentID,c.plo_id,SUM(DISTINCT e.obtainedMarks) AS PLO,SUM(DISTINCT a.marks)AS TotalCoMark
-                            FROM spm_enrollment_t en,
-                                spm_evaluation_t e,
-                                spm_assessment_t a,
-                                spm_co_t c,
-                                spm_plo_t p,
-                                spm_section_t s
+                            FROM performance_monitor_enrollment_t en,
+                                performance_monitor_evaluation_t e,
+                                performance_monitor_assessment_t a,
+                                performance_monitor_co_t c,
+                                performance_monitor_plo_t p,
+                                performance_monitor_section_t s
                             WHERE en.studentID = '{}'
                             AND en.enrollmentID = e.enrollmentID
                                 AND e.assessmentID = a.assessmentNo
@@ -152,16 +151,16 @@ def getNoOfPLOAttempted(studentID):
             SELECT COUNT(TotalPlo.PLOpercentage) AS Acheive
             FROM (
                     SELECT   studentID,(PLO / TotalComark * 100) AS PLOpercentage
-                    FROM spm_plo_t p,
-                        spm_co_t c,
+                    FROM performance_monitor_plo_t p,
+                        performance_monitor_co_t c,
                         (
                             SELECT en.studentID,c.plo_id,SUM(DISTINCT e.obtainedMarks) AS PLO,SUM(DISTINCT a.marks)AS TotalCoMark
-                            FROM spm_enrollment_t en,
-                                spm_evaluation_t e,
-                                spm_assessment_t a,
-                                spm_co_t c,
-                                spm_plo_t p,
-                                spm_section_t s
+                            FROM performance_monitor_enrollment_t en,
+                                performance_monitor_evaluation_t e,
+                                performance_monitor_assessment_t a,
+                                performance_monitor_co_t c,
+                                performance_monitor_plo_t p,
+                                performance_monitor_section_t s
                             WHERE en.student_id = '{}'
                             AND en.enrollmentID = e.enrollmentID
                                 AND e.assessmentID = a.assessmentNo
