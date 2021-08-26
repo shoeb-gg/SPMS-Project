@@ -54,7 +54,7 @@ def getDepartmentWisePLO(departmentID):
                                 performance_monitor_student_t st
                             WHERE st.department_id = '{}'
                             AND st.studentID = en.student_id
-                            AND en.enrollmentID = e.enrollmentID
+                            AND en.enrollmentID = e.enrollment-id
                             AND e.assessmentID = a.assessmentNo
                             AND a.coID = c.coID
                             AND c.ploID = '{}'
@@ -86,11 +86,11 @@ def getUniversityWisePLO(UniversitytName):
                                 performance_monitor_co_t c,
                                 performance_monitor_plo_t p,
                                 performance_monitor_student_t st
-                            WHERE st.university_name = '{}'
-                            AND st.studentID = en.studentID
-                            AND en.enrollmentID = e.enrollmentID
+                            WHERE st.university_name = '{}
+                            AND st.studentID = en.student-id
+                            AND en.enrollmentID = e.enrollment_id
                             AND e.assessmentID = a.assessmentNo
-                            AND a.coID = c.coID
+                            AND a.coID = c.co_id
                             AND c.ploID = '{}'
                             GROUP BY en.sectionID
                         ) ploPer
@@ -123,9 +123,9 @@ def getNoOfPLOAchieved(studentID):
                                 performance_monitor_plo_t p,
                                 performance_monitor_section_t s
                             WHERE en.studentID = '{}'
-                            AND en.enrollmentID = e.enrollmentID
+                            AND en.enrollmentID = e.enrollment_id
                                 AND e.assessmentID = a.assessmentNo
-                                AND a.coID = c.coID
+                                AND a.coID = c.co_id
                                 AND c.ploID = p.ploNo
                             GROUP BY  studentID,p.ploNo
                         ) ploPer
@@ -162,7 +162,7 @@ def getNoOfPLOAttempted(studentID):
                                 performance_monitor_plo_t p,
                                 performance_monitor_section_t s
                             WHERE en.student_id = '{}'
-                            AND en.enrollmentID = e.enrollmentID
+                            AND en.enrollmentID = e.enrollment_id
                                 AND e.assessmentID = a.assessmentNo
                                 AND a.coID = c.id
                                 AND c.ploID = p.ploNo
@@ -183,7 +183,53 @@ def getNoOfPLOAttempted(studentID):
 
 
 # PLO Success Rate
-def ploSuccessRate(studentID):
-    return np.round(getNoOfPLOAchieved(studentID) / getNoOfPLOAttempted(studentID) * 100, 1)
+def ploSuccessRate(student-id):
+    return np.round(getNoOfPLOAchieved(student-id) / getNoOfPLOAttempted(student_id) * 100, 1)
 
+# Higher Management Dashboard
+
+# Number of Students
+def getNumOfStudents(department_id):
+    number = 0
+    with connection.cursor() as cursor:
+        cursor.execute('''
+            SELECT COUNT(studentID) AS NoOfStudent
+            FROM performance_monitor_student_t
+            WHERE department_id = '{}'
+        '''.format(department_id))
+        number = cursor.fetchone()[0]
+        if number is None:
+            number = 0
+            
+    return number
+
+# Number of Faculties
+def getNumOfFaculties(department_id):
+    number = 0
+    with connection.cursor() as cursor:
+        cursor.execute('''
+            SELECT COUNT (DISTINCT facultyID ) AS NoFaculty
+            FROM performance_monitor_faculty_t
+            WHERE department_id = '{}'
+        '''.format(department_id))
+        number = cursor.fetchone()[0]
+        if number is None:
+            number = 0
+            
+    return number
+
+# Number of courses in a department
+def getNumOfCourses():
+    number = 0
+    with connection.cursor() as cursor:
+        cursor.execute('''
+            SELECT COUNT(courseID) AS NoOfcourses
+            FROM performance_monitor_course_t
+        '''.format())
+        number = cursor.fetchone()[0]
+        if number is None:
+            number = 0
+            
+    return number
+    
 
