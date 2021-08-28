@@ -230,5 +230,77 @@ def getNumOfCourses():
             number = 0
             
     return number
+
+
+
+# Faculty
+
+# Num of Courses
+def getNumOfCoursesHead(faculty_id):
+    number = 0
+    with connection.cursor() as cursor:
+        cursor.execute('''
+            SELECT COUNT(DISTINCT course_id) AS NoOfCourses
+            FROM performance_monitor_section_t
+            WHERE faculty_id = '{}';
+        '''.format(faculty_id))
+        number = cursor.fetchone()[0]
+        if number is None:
+            number = 0
+            
+    return number
+    
+
+# Total Number of PLOs Taught by a faculty
+def getNumOfPLOsTaught(faculty_id):
+    number = 0
+    with connection.cursor() as cursor:
+        cursor.execute('''
+            SELECT COUNT(ploNo) AS TotalNoPlotaught
+            FROM (
+                    SELECT course_id, coNo, ploNo, COUNT(TotalPlo.PLOpercentage) AS Acheive
+                    FROM (
+                            SELECT co.course_id, co.coNo, p.ploNo, (PLO / TotalComark * 100) AS PLOpercentage
+                            FROM performance_monitor_plo_t p,
+                                performance_monitor_co_t co,
+                                (
+                                    SELECT en.student_id,
+                                            c.course_id,
+                                            c.coNo,
+                                            c.plo_id,
+                                            SUM(DISTINCT e.obtainedMarks) AS PLO,
+                                            SUM(DISTINCT a.marks)         AS TotalCoMark
+                                    FROM performance_monitor_enrollment_t en,
+                                            performance_monitor_section_t sec,
+                                            performance_monitor_evaluation_t e,
+                                            performance_monitor_assessment_t a,
+                                            performance_monitor_co_t c,
+                                            performance_monitor_plo_t p
+                                    WHERE en.enrollmentID = e.enrollment_id
+                                        AND en.section_id = sec.id
+                                        AND faculty_id = '{}'
+                                        AND e.assessment_id = a.assessmentNo
+                                        AND a.co_id = c.id
+                                        AND c.plo_id = p.ploNo
+                                    GROUP BY student_id, c.course_id, c.coNo, p.ploNo
+                                ) ploPer
+                            WHERE co.coNo = ploPer.coNo
+                                AND p.ploNo = ploPer.plo_id
+                                AND co.course_id = ploPer.course_id
+                            GROUP BY student_id, co.course_id, co.coNo, ploNo
+
+                        ) TotalPlo
+
+                    GROUP BY course_id, coNo, ploNo
+                )
+        '''.format(faculty_id))
+        number = cursor.fetchone()[0]
+        if number is None:
+            number = 0
+            
+    return number
+
+
+
     
 
