@@ -183,8 +183,7 @@ def getNoOfPLOAttempted(studentID):
 
 
 # PLO Success Rate
-def ploSuccessRate(student-id):
-    return np.round(getNoOfPLOAchieved(student-id) / getNoOfPLOAttempted(student_id) * 100, 1)
+def ploSuccessRate(student_id): return np.round(getNoOfPLOAchieved(student-id) / getNoOfPLOAttempted(student_id) * 100, 1)
 
 # Higher Management Dashboard
 
