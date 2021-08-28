@@ -40,3 +40,28 @@ def studentDashboard(request):
     chartName.append(chartN)
     chartLabel.append(chartL)
     chartDataSet.append(chartD)
+
+
+    row = getDepartmentWisePLO('CSE')
+    
+    for i in row:
+        chartL.append(i[1])
+        chartD.append(i[2])
+    
+    chartName.append(chartN)
+    chartLabel.append(chartL)
+    chartDataSet.append(chartD)
+    
+    numberOfGraphs = len(chartName)
+
+    # Stacked PLO Chart
+    (plo, courses, table) = getCourseWisePLOChart(student_id)
+    
+    # getStudentProgressView
+    (semester, semesterActual, semesterAttempted) = getStudentProgressView(student_id, 2019)
+    
+    # Heading
+    a = getNoOfPLOAchieved(student_id)
+    b = getNoOfPLOAttempted(student_id)
+    c = getMinLowestPLO(student_id)
+    d = ploSuccessRate(student_id)
