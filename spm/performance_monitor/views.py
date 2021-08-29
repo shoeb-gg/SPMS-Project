@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.http import HttpResponse
+
 
 from performance_monitor.graphquery import *
 from performance_monitor.models import Cse303ObeMarkSheetMarks
@@ -40,3 +42,21 @@ def studentDashboard(request):
     chartName.append(chartN)
     chartLabel.append(chartL)
     chartDataSet.append(chartD)
+
+
+    chartN = 'Department-wise PLO'
+    chartL = [] # ['January', 'February', 'March', 'April', 'May', 'June', 'July']
+    chartD = [] # [2, 10, 5, 3, 20, 30, 45]
+    
+    row = getDepartmentWisePLO('CSE')
+    
+    for i in row:
+        chartL.append(i[1])
+        chartD.append(i[2])
+    
+    chartName.append(chartN)
+    chartLabel.append(chartL)
+    chartDataSet.append(chartD)
+    
+    numberOfGraphs = len(chartName)
+
