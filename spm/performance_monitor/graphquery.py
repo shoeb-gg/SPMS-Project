@@ -301,6 +301,20 @@ def getNumOfPLOsTaught(faculty_id):
     return number
 
 
-
+# Num of Sections faculty Taking
+def getNumOfSections(faculty_id):
+    number = 0
+    with connection.cursor() as cursor:
+        cursor.execute('''
+            SELECT COUNT(id) AS NoOfSection
+            FROM performance_monitor_section_t
+            WHERE faculty_id = '{}';
+        '''.format(faculty_id))
+        number = cursor.fetchone()[0]
+        if number is None:
+            number = 0
+            
+    return number 
+    
     
 
