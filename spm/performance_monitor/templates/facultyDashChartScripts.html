@@ -1,6 +1,6 @@
 <script>
-  let ch = document.getElementById("a").getContext("2d");
-  let ch2 = document.getElementById("b").getContext("2d");
+  const ch = document.getElementById("a").getContext("2d");
+  const ch2 = document.getElementById("b").getContext("2d");
 
   Chart.defaults.font.family = "Lato";
   Chart.defaults.font.size = 20;
@@ -97,6 +97,56 @@
         },
         y: {
           stacked: true,
+        },
+      },
+    },
+  });
+
+  const studentPloPerCourse = document.getElementById("y").getContext("2d");
+  let chart3 = new Chart(studentPloPerCourse, {
+    type: "bar",
+    data: {
+      labels: [
+        "PLO01",
+        "PLO02",
+        "PLO03",
+        "PLO04",
+        "PLO05",
+        "PLO06",
+        "PLO07",
+        "PLO08",
+        "PLO09",
+        "PLO10",
+        "PLO11",
+        "PLO12",
+        "PLO13",
+      ],
+      datasets: [
+        {
+          label: "% of Students that achieved each PLO",
+          data: [91, 58, 54, 94, 24, 76, 35, 42, 95, 75, 38, 54, 75],
+          backgroundColor: ["green"],
+          hoverBorderWidth: 5,
+          hoverBorderColor: "black",
+        },
+        {
+          label: "% of Students that achieved each PLO",
+          data: [91, 58, 54, 94, 24, 76, 35, 42, 95, 75, 38, 54, 75],
+          backgroundColor: ["green"],
+          hoverBorderWidth: 5,
+          hoverBorderColor: "black",
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          position: "top",
+        },
+        title: {
+          display: true,
+          text: "% Students PLO Achievement",
         },
       },
     },

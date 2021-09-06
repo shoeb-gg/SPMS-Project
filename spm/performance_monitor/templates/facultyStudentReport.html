@@ -3,9 +3,77 @@
 <div id="content" class="container-fluid bg-dark">
   <div id="booking" class="section">
     <div class="section-center">
-      <div class="container">
+      <div class="container w-50">
         <div class="row d-flex justify-content-center">
           <h1 class="text-white">Student Report Tables Here:</h1>
+        </div>
+        <div>
+          <div class="form-header mt-5 pt-2">
+            <h2 class="text-white d-flex justify-content-center">
+              Student Performance Summary:
+            </h2>
+          </div>
+          <div class="form-group mt-3">
+            <h5 class="form-label text-white">Student ID:</h5>
+            <input
+              class="form-control"
+              type="text"
+              placeholder="Enter the ID number of Student"
+              id="coNumber"
+            />
+            <h5 class="form-label text-white mt-3">Course ID:</h5>
+            <input
+              class="form-control"
+              type="text"
+              placeholder="Enter the ID number of the Course"
+              id="coNumber"
+            />
+            <div class="d-flex justify-content-end">
+              <button
+                class="rounded mt-3 btn-primary pl-5 pr-5 pt-1 pb-1"
+                id="coGet"
+                onclick="coMap()"
+                ;
+                return
+                false;
+              >
+                GO
+              </button>
+            </div>
+          </div>
+          <div class="" id="mapSpace"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="booking" class="section">
+    <div class="section-center">
+      <div class="container">
+        <div class="row">
+          <div
+            class="
+              booking-form
+              container-fluid
+              w-75
+              d-flex
+              justify-content-center
+              pt-5
+              pb-1
+            "
+          >
+            <h3 class="text-white">
+              Percentage PLO Score against course average:
+            </h3>
+          </div>
+          <div class="container-fluid w-75 bg-white rounded">
+            <canvas id="y" width="20" height="10"> </canvas>
+          </div>
+        </div>
+        <div class="row mb-5">
+          <div class="container-fluid w-75 bg-white rounded mt-5">
+            <canvas id="z" width="20" height="10"> </canvas>
+          </div>
         </div>
       </div>
     </div>
