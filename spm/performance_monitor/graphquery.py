@@ -84,15 +84,16 @@ def getUniversityWisePLO(UniversitytName):
                                 performance_monitor_evaluation_t e,
                                 performance_monitor_assessment_t a,
                                 performance_monitor_co_t c,
+                                performance_monitor_University_t u,
                                 performance_monitor_plo_t p,
                                 performance_monitor_student_t st
                             WHERE st.university_name = '{}
-                            AND st.studentID = en.student-id
+                            AND st.studentID = en.student_id
                             AND en.enrollmentID = e.enrollment_id
                             AND e.assessmentID = a.assessmentNo
                             AND a.coID = c.co_id
                             AND c.ploID = '{}'
-                            GROUP BY en.sectionID
+                            GROUP BY u.universityName
                         ) ploPer
                     ) TotalPlo;
             '''.format(UniversitytName, ploNum))
@@ -180,6 +181,49 @@ def getNoOfPLOAttempted(studentID):
             
     return number
     
+def getProgramAchievement(prog):
+    plo = ['PLO01', 'PLO02', 'PLO03', 'PLO04', 'PLO05', 'PLO06', 'PLO07', 'PLO08', 'PLO09', 'PLO10', 'PLO11', 'PLO12']
+    semesterActual = []
+    semesterAttempted = []
+    row = []
+    # for i in range(3):
+    #     counterActual = 0
+    #     counterAttempted = 0
+    for j in plo:
+        with connection.cursor() as cursor:
+            cursor.execute('''
+                SELECT COUNT(Acheived.ActualPlo)
+                FROM (
+                        SELECT AVG(TotalPlo.PLOpercentage) AS ActualPlo
+                        FROM (
+                                SELECT student_id,(PLO / TotalComark * 100) AS PLOpercentage
+                                FROM (
+                                        SELECT  en.student_id,SUM(DISTINCT e.obtainedMarks) AS PLO, SUM(DISTINCT a.marks) AS TotalCoMark
+                                        FROM performance_monitor_enrollment_t en,
+                                                performance_monitor_evaluation_t e,
+                                                performance_monitor_assessment_t a,
+                                                performance_monitor_co_t c,
+                                                performance_monitor_plo_t p,
+                                                performance_monitor_program_t pr
+                                        WHERE p.program_id = pr.programID
+                                            AND pr.programID = '{}'
+                                            AND en.enrollmentID = e.enrollment_id
+                                            AND e.assessment_id = a.assessmentNo
+                                            AND a.co_id = c.id
+                                            AND c.plo_id = '{}'
+                                        GROUP BY en.student_id
+                                    ) ploPer
+                            GROUP BY student_id
+                            ) TotalPlo
+                GROUP BY student_id
+                    ) Acheived
+                WHERE Acheived.ActualPlo >= 40;
+            '''.format(prog, j))
+            row = cursor.fetchall()
+            if row is None:
+                row = []
+            semesterActual.append(row[0][0])
+
 
 
 # PLO Success Rate
