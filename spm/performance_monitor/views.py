@@ -21,7 +21,7 @@ def showFacultyStudentReport(request):
 
 
 # Student Dashboard
-
+@allowedUsers(allowedRoles=['Student'])
 def studentDashboard(request):
     chartName = []
     chartLabel = []
@@ -103,7 +103,7 @@ def studentDashboard(request):
     })
 
 
-
+    @allowedUsers(allowedRoles=['Faculty'])
     def facultyDashboard(request):
         faculty_id = request.user.username
     chartName = []
@@ -126,7 +126,39 @@ def studentDashboard(request):
     
     numberOfGraphs = len(chartName)  
 
-
+# getCourseProgressView
+    (semester2, semesterActualCourse, semesterAttemptedCourse) = getCourseProgressView('CSE303', '2019')
+    
+    # print(semester2)
+    # print(semesterActualCourse)
+    # print(semesterAttemptedCourse)
+    
+    # Heading
+    a = getNumOfCoursesHead(faculty_id)
+    b = getNumOfSections(faculty_id)
+    c = getAverageSuccessRate(faculty_id)
+    d = getNumOfPLOsTaught(faculty_id)
+    
+    return render(request, 'performance_monitor/facultydashboard.html', {
+        'userfullname': f'{request.user.first_name} {request.user.last_name}',
+        'usertype': request.user.groups.all()[0].name,
+        'numberOfGraphs': numberOfGraphs,
+        'chartName': chartName,
+        'chartLabel': chartLabel,
+        'chartDataSet': chartDataSet,
+        
+        # getCourseProgressView
+        'semester2': semester2,
+        'semesterActualCourse': semesterActualCourse,
+        'semesterAttemptedCourse': semesterAttemptedCourse,
+        'courseProgressView': 'Course Progress View',
+        
+        # Heading
+        'a': a,
+        'b': b,
+        'c': c,
+        'd': d,
+    })
 
 
 
