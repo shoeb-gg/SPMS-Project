@@ -59,6 +59,10 @@
     <link rel="stylesheet" type="text/css" href=" {% static 'css/util.css'%}" />
     <link rel="stylesheet" type="text/css" href=" {% static 'css/main.css'%}" />
     <!--===============================================================================================-->
+    <style>
+    .warning{
+      font-size: 0.97rem;
+    }</style>
   </head>
   <body>
     <div class="limiter">
@@ -70,28 +74,44 @@
             </span>
 
             <div class="wrap-input100 validate-input">
-              <input class="input100" type="text" name="email" />
+              <input class="input100" id="usrname" type="text" name="email" />
               <span class="focus-input100" data-placeholder="Username"></span>
             </div>
             <div class="wrap-input100 validate-input">
-              <input class="input100" type="text" name="password" />
+              <input class="input100" id="pswrd" type="text" name="password" />
               <span class="focus-input100" data-placeholder="Password"></span>
             </div>
 
             <div class="container-login100-form-btn">
               <div class="wrap-login100-form-btn">
                 <div class="login100-form-bgbtn"></div>
-                <a class="login100-form-btn" href="{%url 'facultyDash'%}">
+                <a class="login100-form-btn" onclick="myFunction()">
                   Login
                 </a>
               </div>
             </div>
+            <div id="wrong"></div>
+            
           </form>
         </div>
       </div>
     </div>
 
     <div id="dropDownSelect1"></div>
+    <script>
+      function myFunction() { 
+        var text = document.getElementById("usrname").value
+        if(text=="f"){
+          location.replace("{%url 'facultyDash'%}")
+        }else{
+          var htmlElements = "";
+          htmlElements += `<div class="bg-danger mt-2 rounded p-1"><p class="warning text-light">Wrong Username or Password!</p>
+            <p class="warning text-light">Please try again</p></div>`
+          var container = document.getElementById("wrong");
+          container.innerHTML = htmlElements;
+        }
+      }
+      </script>
 
     <!--===============================================================================================-->
     <script src=" {% static 'vendor/jquery/jquery-3.2.1.min.js'%}"></script>
@@ -110,4 +130,8 @@
     <!--===============================================================================================-->
     <script src=" {% static 'js/main.js'%}"></script>
   </body>
+  
+    
+    </body>
+    </html>
 </html>
