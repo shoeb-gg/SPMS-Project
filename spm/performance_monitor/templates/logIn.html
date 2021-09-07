@@ -103,10 +103,16 @@
         var text = document.getElementById("usrname").value
         if(text=="f"){
           location.replace("{%url 'facultyDash'%}")
+        }else if(text==""){
+          var htmlElements = "";
+          htmlElements += `<div class="bg-danger mt-2 rounded p-1"><p class="warning text-light text-center">Please Enter Credentials!</p>
+            </div>`
+          var container = document.getElementById("wrong");
+          container.innerHTML = htmlElements;
         }else{
           var htmlElements = "";
-          htmlElements += `<div class="bg-danger mt-2 rounded p-1"><p class="warning text-light">Wrong Username or Password!</p>
-            <p class="warning text-light">Please try again</p></div>`
+          htmlElements += `<div class="bg-danger mt-2 rounded p-1"><p class="warning text-light text-center">Wrong Username or Password!</p>
+            <p class="warning text-light text-center">Please Try Again</p></div>`
           var container = document.getElementById("wrong");
           container.innerHTML = htmlElements;
         }
