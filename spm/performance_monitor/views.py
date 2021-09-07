@@ -21,7 +21,7 @@ def showFacultyStudentReport(request):
 
 
 # Student Dashboard
-@allowedUsers(allowedRoles=['Student'])
+
 def studentDashboard(request):
     chartName = []
     chartLabel = []
@@ -103,7 +103,7 @@ def studentDashboard(request):
     })
 
 
-    @allowedUsers(allowedRoles=['Faculty'])
+    
     def facultyDashboard(request):
         faculty_id = request.user.username
     chartName = []
