@@ -1,154 +1,163 @@
 <script>
-  const ch = document.getElementById("a").getContext("2d");
-  const ch2 = document.getElementById("b").getContext("2d");
-
   Chart.defaults.font.family = "Lato";
   Chart.defaults.font.size = 20;
   Chart.defaults.font.color = "Black";
 
-  let Chart1 = new Chart(ch, {
-    type: "bar",
-    data: {
-      labels: [
-        "PLO01",
-        "PLO02",
-        "PLO03",
-        "PLO04",
-        "PLO05",
-        "PLO06",
-        "PLO07",
-        "PLO08",
-        "PLO09",
-        "PLO10",
-        "PLO11",
-        "PLO12",
-        "PLO13",
-      ],
-      datasets: [
-        {
-          label: "% of Students that achieved each PLO",
-          data: [91, 58, 54, 94, 24, 76, 35, 42, 95, 75, 38, 54, 75],
-          backgroundColor: ["green"],
-          hoverBorderWidth: 5,
-          hoverBorderColor: "black",
-        },
-      ],
-    },
-    options: {
-      plugins: {
-        legend: {
-          display: true,
-          position: "top",
-          labels: {
-            fontColor: "Black",
-            fontSize: 20,
+  const ch = document.getElementById("a");
+  if (ch != null) {
+    let ch1 = ch.getContext("2d");
+    let Chart1 = new Chart(ch1, {
+      type: "bar",
+      data: {
+        labels: [
+          "PLO01",
+          "PLO02",
+          "PLO03",
+          "PLO04",
+          "PLO05",
+          "PLO06",
+          "PLO07",
+          "PLO08",
+          "PLO09",
+          "PLO10",
+          "PLO11",
+          "PLO12",
+          "PLO13",
+        ],
+        datasets: [
+          {
+            label: "% of Students that achieved each PLO",
+            data: [91, 58, 54, 94, 24, 76, 35, 42, 95, 75, 38, 54, 75],
+            backgroundColor: ["green"],
+            hoverBorderWidth: 5,
+            hoverBorderColor: "black",
+          },
+        ],
+      },
+      options: {
+        plugins: {
+          legend: {
+            display: true,
+            position: "top",
+            labels: {
+              fontColor: "Black",
+              fontSize: 20,
+            },
           },
         },
       },
-    },
-  });
+    });
+  }
 
-  let Chart2 = new Chart(ch2, {
-    type: "bar",
-    data: {
-      labels: [
-        "PLO01",
-        "PLO02",
-        "PLO03",
-        "PLO04",
-        "PLO05",
-        "PLO06",
-        "PLO07",
-        "PLO08",
-        "PLO09",
-        "PLO10",
-        "PLO11",
-        "PLO12",
-        "PLO13",
-      ],
-      datasets: [
-        {
-          label: "Attempted",
-          data: [
-            589, 521, 622, 344, 366, 522, 434, 912, 412, 552, 253, 831, 743,
-          ],
-          backgroundColor: "red",
+  const ch2 = document.getElementById("b");
+  if (ch2 != null) {
+    let chh = ch2.getContext("2d");
+    let Chart2 = new Chart(chh, {
+      type: "bar",
+      data: {
+        labels: [
+          "PLO01",
+          "PLO02",
+          "PLO03",
+          "PLO04",
+          "PLO05",
+          "PLO06",
+          "PLO07",
+          "PLO08",
+          "PLO09",
+          "PLO10",
+          "PLO11",
+          "PLO12",
+          "PLO13",
+        ],
+        datasets: [
+          {
+            label: "Attempted",
+            data: [
+              589, 521, 622, 344, 366, 522, 434, 912, 412, 552, 253, 831, 743,
+            ],
+            backgroundColor: "red",
+          },
+          {
+            label: "Achieved",
+            data: [
+              450, 456, 255, 189, 299, 511, 400, 788, 122, 444, 09, 666, 333,
+            ],
+            backgroundColor: "blue",
+          },
+        ],
+      },
+      options: {
+        plugins: {
+          title: {
+            display: true,
+            text: "Number of Students who Attempted v/s Achieved each PLO",
+          },
         },
-        {
-          label: "Achieved",
-          data: [
-            450, 456, 255, 189, 299, 511, 400, 788, 122, 444, 09, 666, 333,
-          ],
-          backgroundColor: "blue",
-        },
-      ],
-    },
-    options: {
-      plugins: {
-        title: {
-          display: true,
-          text: "Number of Students who Attempted v/s Achieved each PLO",
+        responsive: true,
+        scales: {
+          x: {
+            stacked: true,
+          },
+          y: {
+            stacked: true,
+          },
         },
       },
-      responsive: true,
-      scales: {
-        x: {
-          stacked: true,
-        },
-        y: {
-          stacked: true,
-        },
-      },
-    },
-  });
+    });
+  }
 
-  const studentPloPerCourse = document.getElementById("y").getContext("2d");
-  let chart3 = new Chart(studentPloPerCourse, {
-    type: "bar",
-    data: {
-      labels: [
-        "PLO01",
-        "PLO02",
-        "PLO03",
-        "PLO04",
-        "PLO05",
-        "PLO06",
-        "PLO07",
-        "PLO08",
-        "PLO09",
-        "PLO10",
-        "PLO11",
-        "PLO12",
-        "PLO13",
-      ],
-      datasets: [
-        {
-          label: "% of Students that achieved each PLO",
-          data: [91, 58, 54, 94, 24, 76, 35, 42, 95, 75, 38, 54, 75],
-          backgroundColor: ["green"],
-          hoverBorderWidth: 5,
-          hoverBorderColor: "black",
-        },
-        {
-          label: "% of Students that achieved each PLO",
-          data: [91, 58, 54, 94, 24, 76, 35, 42, 95, 75, 38, 54, 75],
-          backgroundColor: ["green"],
-          hoverBorderWidth: 5,
-          hoverBorderColor: "black",
-        },
-      ],
-    },
-    options: {
-      responsive: true,
-      plugins: {
-        legend: {
-          position: "top",
-        },
-        title: {
-          display: true,
-          text: "% Students PLO Achievement",
+  const studentPloPerCourse = document.getElementById("y");
+  if (studentPloPerCourse != null) {
+    let PloPerCourse = studentPloPerCourse.getContext("2d");
+
+    let chart3 = new Chart(PloPerCourse, {
+      type: "bar",
+      data: {
+        labels: [
+          "PLO01",
+          "PLO02",
+          "PLO03",
+          "PLO04",
+          "PLO05",
+          "PLO06",
+          "PLO07",
+          "PLO08",
+          "PLO09",
+          "PLO10",
+          "PLO11",
+          "PLO12",
+          "PLO13",
+        ],
+        datasets: [
+          {
+            label: "% of Students that achieved each PLO",
+            data: [91, 58, 54, 94, 24, 76, 35, 42, 95, 75, 38, 54, 75],
+            backgroundColor: ["green"],
+            hoverBorderWidth: 5,
+            hoverBorderColor: "black",
+          },
+          {
+            label: "% of Students that achieved each PLO",
+            data: [91, 58, 54, 94, 24, 76, 35, 42, 95, 75, 38, 54, 75],
+            backgroundColor: ["green"],
+            hoverBorderWidth: 5,
+            hoverBorderColor: "black",
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: "top",
+          },
+          title: {
+            display: true,
+            text: "% Students PLO Achievement",
+          },
         },
       },
-    },
-  });
+    });
+  }
 </script>
