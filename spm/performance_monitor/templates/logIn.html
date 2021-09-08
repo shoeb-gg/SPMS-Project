@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Login V2</title>
+    <title>Welcome to Student Performance Monitoring System (SPMS)</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!--===============================================================================================-->
@@ -103,6 +103,8 @@
         var text = document.getElementById("usrname").value
         if(text=="f"){
           location.replace("{%url 'facultyDash'%}")
+        }else if(text=="s"){
+          location.replace("{%url 'studentHome'%}")
         }else if(text==""){
           var htmlElements = "";
           htmlElements += `<div class="bg-danger mt-2 rounded p-1"><p class="warning text-light text-center">Please Enter Credentials!</p>

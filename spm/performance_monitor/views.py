@@ -18,6 +18,9 @@ def showLogIn(request):
 def showFacultyStudentReport(request):
     return render(request, 'facultyStudentReport.html')
 
+def showStudent(request):
+    return render(request, 'studentHome.html')
+
 
 
 # Student Dashboard

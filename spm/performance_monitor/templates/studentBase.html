@@ -1,0 +1,80 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Welcome to Student Performance Monitoring System (SPMS)</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <link
+      href=" {% static 'https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900' %}"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href=" {% static 'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' %}"
+    />
+    <link rel="stylesheet" href=" {% static 'css/style.css' %}" />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="{% static 'css/bootstrap.min.css'%}"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"
+      integrity="sha512-Wt1bJGtlnMtGP0dqNFH1xlkLBNpEodaiQ8ZN5JLA5wpc1sUlk/O5uuOMNgvzddzkpvZ9GLyYNa8w2s7rqiTk5Q=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    
+    </style>
+  </head>
+
+  <body>
+    <div class="wrapper d-flex align-items-stretch">
+      <nav id="sidebar">
+        
+        <div
+          class="img bg-wrap text-center py-4"
+          style="background-image: url('{% static "images/bg.jpg"%}')"
+        >
+          <div class="user-logo">
+            <div
+              class="img"
+              style="background-image: url('{% static "images/faculty.jpg"%}')"
+            ></div>
+            <h3 class="bg-dark">Md. Abu Sayed
+            </h3>
+          </div>
+        </div>
+        <ul class="list-unstyled components mb-5">
+          <li class="">
+            <a href=""><span class="fa fa-home mr-3"></span> Home</a>
+          </li>
+          
+          <li>
+            <a href=""><span class="fa fa-gift mr-3"></span>Student Performance Report</a>
+          </li>
+          <li>
+            <a href="#"><span class="fa fa-trophy mr-3"></span>Course Report</a>
+          </li>
+          <li>
+            <a href="#"><span class="fa fa-cog mr-3"></span>Account Settings</a>
+          </li>          
+          <li>
+            <a  href="{%url 'logIn'%}"><span class="fa fa-sign-out mr-3"></span> Sign Out</a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Page Content  -->
+       {%block student%}
+       {%endblock student%}
+    </div>   
+  </body>
+</html>

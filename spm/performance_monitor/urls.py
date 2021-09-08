@@ -7,4 +7,5 @@ urlpatterns = [
     path('/faculty/', views.showFaculty, name="facultyDash" ),
     path('/faculty/Data/', views.showFacultyDataEntry, name="facultyData" ),
     path('/faculty/StudentReport/', views.showFacultyStudentReport, name="facultyStudentReport" ),
+    path('/Student/', views.showStudent, name="studentHome" ),
 ]
