@@ -183,7 +183,7 @@ class Enrollment_T(models.Model):
     year = models.IntegerField(default=2020,null=True)
 
     def __str__(self):
-        return str.registrationID
+        return str.enrollmentID
 
 
 
