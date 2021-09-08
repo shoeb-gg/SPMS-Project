@@ -102,6 +102,9 @@ def studentDashboard(request):
         'd': d,
     })
 
+#................................FacultyDashboard..................................................
+#..................................................................................
+
 
     @allowedUsers(allowedRoles=['Faculty'])
     def facultyDashboard(request):
