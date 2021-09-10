@@ -1,0 +1,41 @@
+{% extends 'hmBase.html'%} {%block hm%}
+<div id="content" class="container-fluid bg-dark">
+  <div id="booking" class="section">
+    <div class="section-center">
+      <div class="container">
+        <div class="row">
+          <div class="booking-form container-fluid w-75">
+            <div class="form-header mt-4">
+              <h2 class="text-white font-weight-bold mb-3">
+                School-Wise Performance
+              </h2>
+            </div>
+            <form>
+              <div class="row">
+                <div class="container-fluid">
+                  <div class="form-group">
+                    <h5 class="form-label text-white">School:</h5>
+                    <select class="form-control h-100">
+                      <option value="" disabled selected>
+                        Select a School
+                      </option>
+                      <option>Business & Entrepreneurship</option>
+                      <option>Engineering, Technology & Sciences</option>
+                      <option>Environment And Life Sciences</option>
+                      <option>Liberal Arts & Social Sciences</option>
+                      <option>Pharmacy And Public Health</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </form>
+            <div class="container-fluid bg-white rounded mt-5">
+              <canvas id="s" width="20" height="10"> </canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{%endblock hm%}

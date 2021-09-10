@@ -21,10 +21,21 @@ def showFacultyStudentReport(request):
 def showStudent(request):
     return render(request, 'studentHome.html')
 
+def showHm(request):
+    return render(request, 'hmSchool.html')
+
+def showHmUniversity(request):
+    return render(request, 'hmUniversity.html')
+
+def facultyStudentReportGenerate(request):
+    if request.method=="POST":
+        sID = request.POST.get('studentID')
+        cID = request.POST.get('courseID')
+        print(sID,cID)
+    
 
 
 # Student Dashboard
-
 def studentDashboard(request):
     chartName = []
     chartLabel = []

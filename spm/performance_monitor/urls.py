@@ -8,4 +8,6 @@ urlpatterns = [
     path('/faculty/Data/', views.showFacultyDataEntry, name="facultyData" ),
     path('/faculty/StudentReport/', views.showFacultyStudentReport, name="facultyStudentReport" ),
     path('/Student/', views.showStudent, name="studentHome" ),
+    path('/higherManagement/', views.showHm, name="hmHome" ),
+    path('/higherManagement/University', views.showHmUniversity, name="hmUniversity" ),
 ]

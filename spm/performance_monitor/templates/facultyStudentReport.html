@@ -6,37 +6,40 @@
       <div class="container w-50">
         <div>
           <div class="form-header mt-3 pt-2">
-            <h2 class="text-white d-flex justify-content-center">
-              Student Performance Summary:
+            <h2 class="text-white d-flex font-weight-bold">
+              Student Performance Summary
             </h2>
           </div>
           <div class="form-group mt-3">
-            <h5 class="form-label text-white">Student ID:</h5>
-            <input
-              class="form-control"
-              type="text"
-              placeholder="Enter the ID number of Student"
-              id="coNumber"
-            />
-            <h5 class="form-label text-white mt-3">Course ID:</h5>
-            <input
-              class="form-control"
-              type="text"
-              placeholder="Enter the ID number of the Course"
-              id="coNumber"
-            />
-            <div class="d-flex justify-content-end">
-              <button
-                class="rounded mt-3 btn-primary pl-5 pr-5 pt-1 pb-1"
-                id="coGet"
-                onclick="coMap()"
-                ;
-                return
-                false;
-              >
-                GO
-              </button>
-            </div>
+            <form action="" method="POST">
+              {%csrf_token%}
+              <h5 class="form-label text-white">Student ID:</h5>
+              <input
+                class="form-control"
+                type="text"
+                placeholder="Enter the ID number of Student"
+                name="studentID"
+              />
+              <h5 class="form-label text-white mt-3">Course ID:</h5>
+              <input
+                class="form-control"
+                type="text"
+                placeholder="Enter the ID number of the Course"
+                name="courseID"
+              />
+              <div class="d-flex justify-content-end">
+                <button
+                  class="rounded mt-3 btn-primary pl-5 pr-5 pt-1 pb-1"
+                  id=""
+                  onclick=""
+                  ;
+                  return
+                  false;
+                >
+                  GO
+                </button>
+              </div>
+            </form>
           </div>
           <div class="" id="mapSpace"></div>
         </div>
@@ -48,19 +51,10 @@
     <div class="section-center">
       <div class="container">
         <div class="row">
-          <div
-            class="
-              booking-form
-              container-fluid
-              w-75
-              d-flex
-              justify-content-center
-              pt-5
-              pb-1
-            "
-          >
-            <h3 class="text-white">
-              Percentage PLO Score against course average:
+          <div class="booking-form container-fluid w-75 pt-5 pb-1">
+            <h3 class="text-white font-weight-bold">
+              Marks of the selected Student in each PLO compared to the course
+              average
             </h3>
           </div>
           <div class="container-fluid w-75 bg-white rounded">
@@ -75,18 +69,8 @@
     <div class="section-center">
       <div class="container">
         <div class="row">
-          <div
-            class="
-              booking-form
-              container-fluid
-              w-75
-              d-flex
-              justify-content-center
-              pt-5
-              pb-1
-            "
-          >
-            <h3 class="text-white">Performance in each PLO:</h3>
+          <div class="booking-form container-fluid w-75 pt-5 pb-1">
+            <h3 class="text-white font-weight-bold">Performance in each PLO</h3>
           </div>
           <div class="container-fluid w-75 bg-white rounded mb-5">
             <table class="mt-3 mb-3">

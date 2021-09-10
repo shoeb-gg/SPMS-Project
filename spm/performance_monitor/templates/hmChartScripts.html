@@ -1,0 +1,147 @@
+<script>
+  Chart.defaults.font.family = "Lato";
+  Chart.defaults.font.size = 20;
+  Chart.defaults.font.color = "Black";
+
+  const ch2 = document.getElementById("s");
+  if (ch2 != null) {
+    let chh = ch2.getContext("2d");
+    let Chart2 = new Chart(chh, {
+      type: "bar",
+      data: {
+        labels: [
+          "PLO01",
+          "PLO02",
+          "PLO03",
+          "PLO04",
+          "PLO05",
+          "PLO06",
+          "PLO07",
+          "PLO08",
+          "PLO09",
+          "PLO10",
+          "PLO11",
+          "PLO12",
+          "PLO13",
+        ],
+        datasets: [
+          {
+            label: "Attempted",
+            data: [
+              589, 521, 622, 344, 366, 522, 434, 912, 412, 552, 253, 831, 743,
+            ],
+            backgroundColor: "red",
+            hoverBorderWidth: 5,
+            hoverBorderColor: "black",
+          },
+          {
+            label: "Achieved",
+            data: [
+              450, 456, 255, 189, 299, 511, 400, 788, 122, 444, 119, 666, 733,
+            ],
+            backgroundColor: "blue",
+            hoverBorderWidth: 5,
+            hoverBorderColor: "black",
+          },
+        ],
+      },
+      options: {
+        plugins: {
+          title: {
+            display: true,
+            text: "Number of Students who Attempted v/s Achieved each PLO",
+          },
+        },
+        responsive: true,
+        scales: {
+          x: {
+            stacked: true,
+          },
+          y: {
+            stacked: true,
+          },
+        },
+      },
+    });
+  }
+
+  const ch3 = document.getElementById("t");
+  if (ch3 != null) {
+    let ch33 = ch3.getContext("2d");
+    let Chart3 = new Chart(ch33, {
+      type: "radar",
+      data: {
+        labels: [
+          "CSE",
+          "BBA",
+          "EEE",
+          "ENV",
+          "Pharmacy",
+          "LLB",
+          "BioChemistry",
+          "MicroBiology",
+          "Eng. Lit",
+        ],
+        datasets: [
+          {
+            label: "IUB",
+            data: [898, 747, 171, 877, 724, 455, 549, 1098, 856],
+            borderColor: "red",
+            backgroundColor: "rgba(255, 63, 63, 0.1)",
+          },
+          {
+            label: "NSU",
+            data: [885, 665, 459, 855, 777, 885, 1285, 269, 485],
+            borderColor: "blue",
+            backgroundColor: "rgba(50, 53, 255, 0.1)",
+          },
+          {
+            label: "EWU",
+            data: [747, 354, 1074, 1300, 471, 782, 444, 682, 452],
+            borderColor: "rgba(0, 200, 5)",
+            backgroundColor: "rgba(0, 200, 5, 0.1)",
+          },
+          {
+            label: "AIUB",
+            data: [174, 517, 749, 638, 578, 681, 1280, 652, 547],
+            borderColor: "rgba(186, 0, 184)",
+            backgroundColor: "rgba(186, 0, 184, 0.1)",
+          },
+          {
+            label: "UIU",
+            data: [934, 665, 374, 58, 371, 102, 696, 999, 1222],
+            borderColor: "rgba(155, 0, 81)",
+            backgroundColor: "rgba(155, 0, 81, 0.1)",
+          },
+          {
+            label: "BRACU",
+            data: [885, 471, 342, 471, 898, 1111, 234, 141, 988],
+            borderColor: "rgba(0, 170, 149)",
+            backgroundColor: "rgba(0, 170, 149, 0.1)",
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          title: {
+            display: true,
+            text: "PLO Achievement by Number of Students in Each Major",
+            font: {
+              size: 30,
+            },
+          },
+        },
+        scales: {
+          r: {
+            pointLabels: {
+              font: {
+                size: 20,
+              },
+            },
+          },
+        },
+      },
+    });
+  }
+</script>

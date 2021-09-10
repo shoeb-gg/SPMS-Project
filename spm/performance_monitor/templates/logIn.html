@@ -74,18 +74,18 @@
             </span>
 
             <div class="wrap-input100 validate-input">
-              <input class="input100" id="usrname" type="text" name="email" />
+              <input class="input100" id="usrname" type="text" name="email" autocomplete="off"/>
               <span class="focus-input100" data-placeholder="Username"></span>
             </div>
             <div class="wrap-input100 validate-input">
-              <input class="input100" id="pswrd" type="text" name="password" />
+              <input class="input100" id="pswrd" type="text" name="password" autocomplete="off"/>
               <span class="focus-input100" data-placeholder="Password"></span>
             </div>
 
             <div class="container-login100-form-btn">
               <div class="wrap-login100-form-btn">
                 <div class="login100-form-bgbtn"></div>
-                <a class="login100-form-btn" onclick="myFunction()">
+                <a class="login100-form-btn text-light" onclick="myFunction()">
                   Login
                 </a>
               </div>
@@ -105,6 +105,8 @@
           location.replace("{%url 'facultyDash'%}")
         }else if(text=="s"){
           location.replace("{%url 'studentHome'%}")
+        }else if(text=="h"){
+          location.replace("{%url 'hmHome'%}")
         }else if(text==""){
           var htmlElements = "";
           htmlElements += `<div class="bg-danger mt-2 rounded p-1"><p class="warning text-light text-center">Please Enter Credentials!</p>
