@@ -22,7 +22,7 @@ def getStudentWisePLO(student_id):
                         WHERE en.student_id = '{}'
                             AND en.enrollmentID = e.enrollment_id
                             AND e.assessment_id = a.assessmentNo
-                            AND a.co_id = c.id
+                            AND a.co_id = c.coID
                             AND c.plo_id = '{}'
                         GROUP BY en.section_id
                     ) ploPer
@@ -165,7 +165,7 @@ def getNoOfPLOAttempted(studentID):
                             WHERE en.student_id = '{}'
                             AND en.enrollmentID = e.enrollment_id
                                 AND e.assessmentID = a.assessmentNo
-                                AND a.coID = c.id
+                                AND a.coID = c.coID
                                 AND c.ploID = p.ploNo
                             GROUP BY  studentID,p.ploNo
                         ) ploPer
@@ -209,7 +209,7 @@ def getProgramAchievement(prog):
                                             AND pr.programID = '{}'
                                             AND en.enrollmentID = e.enrollment_id
                                             AND e.assessment_id = a.assessmentNo
-                                            AND a.co_id = c.id
+                                            AND a.co_id = c.coID
                                             AND c.plo_id = '{}'
                                         GROUP BY en.student_id
                                     ) ploPer
@@ -321,10 +321,10 @@ def getNumOfPLOsTaught(faculty_id):
                                             performance_monitor_co_t c,
                                             performance_monitor_plo_t p
                                     WHERE en.enrollmentID = e.enrollment_id
-                                        AND en.section_id = sec.id
+                                        AND en.section_id = sec.coID
                                         AND faculty_id = '{}'
                                         AND e.assessment_id = a.assessmentNo
-                                        AND a.co_id = c.id
+                                        AND a.co_id = c.coID
                                         AND c.plo_id = p.ploNo
                                     GROUP BY student_id, c.course_id, c.coNo, p.ploNo
                                 ) ploPer
