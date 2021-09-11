@@ -87,7 +87,7 @@ def getUniversityWisePLO(UniversitytName):
                                 performance_monitor_University_t u,
                                 performance_monitor_plo_t p,
                                 performance_monitor_student_t st
-                            WHERE st.university_name = '{}
+                            WHERE st.university_name = '{}'
                             AND st.studentID = en.student_id
                             AND en.enrollmentID = e.enrollment_id
                             AND e.assessmentID = a.assessmentNo
