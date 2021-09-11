@@ -116,13 +116,9 @@ def studentDashboard(request):
         'd': d,
     })
 
-#................................FacultyDashboard..................................................
-#..................................................................................
-
-
-    
-    def facultyDashboard(request):
-        faculty_id = request.user.username
+#................................FacultyDashboard..................................................    
+def facultyDashboard(request):
+    faculty_id = request.user.username
     chartName = []
     chartLabel = []
     chartDataSet = []
@@ -179,8 +175,8 @@ def studentDashboard(request):
 
       #HighermanagementDashboard
       
-    def hmDashboard(request): 
-     dept_id = 'CSE'
+def hmDashboard(request): 
+    dept_id = 'CSE'
     
     chartName = []
     chartLabel = []
@@ -199,7 +195,6 @@ def studentDashboard(request):
     chartName.append(chartN)
     chartLabel.append(chartL)
     chartDataSet.append(chartD)
-    
     numberOfGraphs = len(chartName)
 
 

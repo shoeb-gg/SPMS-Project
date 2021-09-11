@@ -74,5 +74,88 @@
        {%endblock hm%}
     </div>   
   </body>
+  <script>
+    function school() {      
+      var htmlElements = "";
+      htmlElements+=`
+            <div class="container-fluid bg-white rounded mt-5">
+              <canvas id="s" width="20" height="10"> </canvas>
+            </div>
+      `;     
+      
+      var container = document.getElementById("schoolChart");
+      container.innerHTML = htmlElements;       
+
+    
+
+
+    Chart.defaults.font.family = "Lato";
+    Chart.defaults.font.size = 20;
+    Chart.defaults.font.color = "Black";
+    
+    const ch2 = document.getElementById("s");
+    console.log(ch2);
+    if (ch2 != null) {      
+      let chh = ch2.getContext("2d");
+      let Chart2 = new Chart(chh, {
+        type: "bar",
+        data: {
+          labels: [
+            "PLO01",
+            "PLO02",
+            "PLO03",
+            "PLO04",
+            "PLO05",
+            "PLO06",
+            "PLO07",
+            "PLO08",
+            "PLO09",
+            "PLO10",
+            "PLO11",
+            "PLO12",
+            "PLO13",
+          ],
+          datasets: [
+            {
+              label: "Attempted",
+              data: [
+                589, 521, 622, 344, 366, 522, 434, 912, 412, 552, 253, 831, 743,
+              ],
+              backgroundColor: "red",
+              hoverBorderWidth: 5,
+              hoverBorderColor: "black",
+            },
+            {
+              label: "Achieved",
+              data: [
+                450, 456, 255, 189, 299, 511, 400, 788, 122, 444, 119, 666, 733,
+              ],
+              backgroundColor: "blue",
+              hoverBorderWidth: 5,
+              hoverBorderColor: "black",
+            },
+          ],
+        },
+        options: {
+          plugins: {
+            title: {
+              display: true,
+              text: "Number of Students who Attempted v/s Achieved each PLO for selected School",
+            },
+          },
+          responsive: true,
+          scales: {
+            x: {
+              stacked: true,
+            },
+            y: {
+              stacked: true,
+            },
+          },
+        },
+      });
+    }
+  }
+  </script>
   {% include "hmChartScripts.html" %}
 </html>
