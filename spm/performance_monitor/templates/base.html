@@ -185,8 +185,7 @@
           htmlElements += `
           <div class="d-flex justify-content-between mt-1">
             <h6 class="mr-1 mt-3 text-white">Question${j+1}:</h6>
-            <input class="form-control mr-1 ml-1 mt-2" type="text" placeholder="Marks Achieved in the Question" />
-            
+            <input class="form-control mr-1 ml-1 mt-2" type="text" placeholder="Marks Achieved in the Question" />            
           </div>
           `;
         }
@@ -202,6 +201,7 @@
                 >
                   Submit
                 </button>
+                
               </div>
       `
       var container = document.getElementById("studentSpace");
@@ -227,11 +227,19 @@
             type="text"
             placeholder="Enter the CO Number"
           />
-          <input
-            class="form-control ml-2 mb-3"
-            type="text"
-            placeholder="Enter the Pass Threshold"
-          />
+          <select class="form-control h-100 ml-3 mb-3">
+                      <option>Select % Threshold</option>
+                      <option>20%</option>
+                      <option>25%</option>
+                      <option>30%</option>
+                      <option>35%</option>
+                      <option>40%</option>
+                      <option>45%</option>
+                      <option>50%</option>
+                      <option>55%</option>
+                      <option>60%</option>
+                      <option>65%</option>
+                    </select>
         </div>
         `;        
       }
