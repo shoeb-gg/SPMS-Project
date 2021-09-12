@@ -109,9 +109,7 @@
           <li>
             <a href="{%url 'facultyStudentReport'%}"><span class="fa fa-gift mr-3"></span>Student Performance Report</a>
           </li>
-          <li>
-            <a href="#"><span class="fa fa-trophy mr-3"></span>Course Report</a>
-          </li>
+          
           <li>
             <a href="#"><span class="fa fa-cog mr-3"></span>Account Settings</a>
           </li>          
@@ -260,6 +258,288 @@
       container.innerHTML = htmlElements;      
     }
 
+    function sReport() {
+            
+      var htmlElements = `
+      <div id="booking" class="section">
+        <div class="section-center">
+          <div class="container">
+            <div class="row">
+              <div class="booking-form container-fluid w-75 pt-5 pb-1">
+                <h3 class="text-white font-weight-bold">
+                  Marks of the selected Student in each PLO compared to the course
+                  average
+                </h3>
+              </div>
+              <div class="container-fluid w-75 bg-white rounded">
+                <canvas id="y" width="20" height="10"> </canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="booking" class="section">
+        <div class="section-center">
+          <div class="container">
+            <div class="row">
+              <div class="booking-form container-fluid w-75 pt-5 pb-1">
+                <h3 class="text-white font-weight-bold">Performance in each PLO</h3>
+              </div>
+              <div class="container-fluid w-75 bg-white rounded mb-5">
+                <table class="mt-3 mb-3">
+                  <thead>
+                    <tr>
+                      <th rowspan="2" colspan="2" class="PLOHeader">PLOs</th>
+                      <th colspan="3">Courses</th>
+                    </tr>
+                    <tr>
+                      <th>CSE101</th>
+                      <th>CSE203</th>
+                      <th>CSE303</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td rowspan="2">PLO1</td>
+                      <td>Acheivement Status</td>
+                      <td>Achieved</td>
+                      <td>Achieved</td>
+                      <td>Failed</td>
+                    </tr>
+                    <tr>
+                      <td>Percentage Achieved</td>
+                      <td>89</td>
+                      <td>75</td>
+                      <td>33</td>
+                    </tr>
+                    <tr>
+                      <td rowspan="2">PLO2</td>
+                      <td>Acheivement Status</td>
+                      <td>Achieved</td>
+                      <td>Failed</td>
+                      <td>Achieved</td>
+                    </tr>
+                    <tr>
+                      <td>Percentage Achieved</td>
+                      <td>88</td>
+                      <td>41</td>
+                      <td>77</td>
+                    </tr>
+                    <tr>
+                      <td rowspan="2">PLO3</td>
+                      <td>Acheivement Status</td>
+                      <td>Failed</td>
+                      <td>Failed</td>
+                      <td>Achieved</td>
+                    </tr>
+                    <tr>
+                      <td>Percentage Achieved</td>
+                      <td>15</td>
+                      <td>44</td>
+                      <td>96</td>
+                    </tr>
+                    <tr>
+                      <td rowspan="2">PLO4</td>
+                      <td>Acheivement Status</td>
+                      <td>Achieved</td>
+                      <td>Achieved</td>
+                      <td>Achieved</td>
+                    </tr>
+                    <tr>
+                      <td>Percentage Achieved</td>
+                      <td>78</td>
+                      <td>85</td>
+                      <td>93</td>
+                    </tr>
+                    <tr>
+                      <td rowspan="2">PLO5</td>
+                      <td>Acheivement Status</td>
+                      <td>Achieved</td>
+                      <td>Failed</td>
+                      <td>Failed</td>
+                    </tr>
+                    <tr>
+                      <td>Percentage Achieved</td>
+                      <td>87</td>
+                      <td>42</td>
+                      <td>27</td>
+                    </tr>
+                    <tr>
+                      <td rowspan="2">PLO6</td>
+                      <td>Acheivement Status</td>
+                      <td>Failed</td>
+                      <td>Failed</td>
+                      <td>Failed</td>
+                    </tr>
+                    <tr>
+                      <td>Percentage Achieved</td>
+                      <td>24</td>
+                      <td>45</td>
+                      <td>39</td>
+                    </tr>
+                    <tr>
+                      <td rowspan="2">PLO7</td>
+                      <td>Acheivement Status</td>
+                      <td>Failed</td>
+                      <td>Achieved</td>
+                      <td>Achieved</td>
+                    </tr>
+                    <tr>
+                      <td>Percentage Achieved</td>
+                      <td>11</td>
+                      <td>67</td>
+                      <td>76</td>
+                    </tr>
+                    <tr>
+                      <td rowspan="2">PLO8</td>
+                      <td>Acheivement Status</td>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    <tr>
+                      <td>Percentage Achieved</td>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    <tr>
+                      <td rowspan="2">PLO9</td>
+                      <td>Acheivement Status</td>
+                      <td>Failed</td>
+                      <td>Failed</td>
+                      <td>Achieved</td>
+                    </tr>
+                    <tr>
+                      <td>Percentage Achieved</td>
+                      <td>33</td>
+                      <td>09</td>
+                      <td>65</td>
+                    </tr>
+                    <tr>
+                      <td rowspan="2">PLO10</td>
+                      <td>Acheivement Status</td>
+                      <td>Achieved</td>
+                      <td>Achieved</td>
+                      <td>Achieved</td>
+                    </tr>
+                    <tr>
+                      <td>Percentage Achieved</td>
+                      <td>66</td>
+                      <td>85</td>
+                      <td>77</td>
+                    </tr>
+                    <tr>
+                      <td rowspan="2">PLO11</td>
+                      <td>Acheivement Status</td>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    <tr>
+                      <td>Percentage Achieved</td>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    <tr>
+                      <td rowspan="2">PLO12</td>
+                      <td>Acheivement Status</td>
+                      <td>Achieved</td>
+                      <td>Failed</td>
+                      <td>Failed</td>
+                    </tr>
+                    <tr>
+                      <td>Percentage Achieved</td>
+                      <td>93</td>
+                      <td>41</td>
+                      <td>32</td>
+                    </tr>
+                    <tr>
+                      <td rowspan="2">PLO13</td>
+                      <td>Acheivement Status</td>
+                      <td>Failed</td>
+                      <td>Failed</td>
+                      <td>Achieved</td>
+                    </tr>
+                    <tr>
+                      <td>Percentage Achieved</td>
+                      <td>05</td>
+                      <td>42</td>
+                      <td>53</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
+
+      `;
+      var container = document.getElementById("sr");
+      container.innerHTML = htmlElements;
+
+      const studentPloPerCourse = document.getElementById("y");
+        if (studentPloPerCourse != null) {
+          let PloPerCourse = studentPloPerCourse.getContext("2d");
+          let chart3 = new Chart(PloPerCourse, {
+            type: "bar",
+            data: {
+              labels: [
+                "PLO01",
+                "PLO02",
+                "PLO03",
+                "PLO04",
+                "PLO05",
+                "PLO06",
+                "PLO07",
+                "PLO08",
+                "PLO09",
+                "PLO10",
+                "PLO11",
+                "PLO12",
+                "PLO13",
+              ],
+              datasets: [
+                {
+                  label: "Mark of Student in each PLO",
+                  data: [91, 58, 54, 94, 24, 76, 35, 42, 95, 75, 38, 54, 75],
+                  backgroundColor: ["orange"],
+                  hoverBorderWidth: 2,
+                  hoverBorderColor: "black",
+                },
+                {
+                  label: "Average mark of all Students in the selected course",
+                  data: [88, 75, 63, 75, 55, 73, 44, 66, 79, 71, 43, 61, 55],
+                  backgroundColor: ["blue"],
+                  hoverBorderWidth: 2,
+                  hoverBorderColor: "black",
+                },
+              ],
+            },
+            options: {
+              responsive: true,
+              plugins: {
+                legend: {
+                  position: "top",
+                },
+                title: {
+                  display: true,
+                  text: "Marks in each PLO of the selected Student",
+                },
+              },
+            },
+          });
+        }
+
+
+        
+      }
   </script>
   {% include "facultyDashChartScripts.html" %}
 </html>

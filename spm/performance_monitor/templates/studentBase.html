@@ -80,15 +80,12 @@
         </div>
         <ul class="list-unstyled components mb-5">
           <li class="">
-            <a href=""><span class="fa fa-home mr-3"></span> Home</a>
+            <a href="{%url 'studentHome'%}"><span class="fa fa-home mr-3"></span> Home</a>
           </li>
           
           <li>
-            <a href=""><span class="fa fa-gift mr-3"></span>Student Performance Report</a>
-          </li>
-          <li>
-            <a href="#"><span class="fa fa-trophy mr-3"></span>Course Report</a>
-          </li>
+            <a href="{%url 'studentCourse'%}"><span class="fa fa-gift mr-3"></span>Course-Wise Performance</a>
+          </li>          
           <li>
             <a href="#"><span class="fa fa-cog mr-3"></span>Account Settings</a>
           </li>          
@@ -103,4 +100,189 @@
        {%endblock student%}
     </div>   
   </body>
+  <script>
+    Chart.defaults.font.family = "Lato";
+    Chart.defaults.font.size = 20;
+    Chart.defaults.font.color = "Black";
+
+    
+    function courseGraph() {
+      var text = document.getElementById("course").value;      
+      var htmlElements = `
+            <div class="container-fluid bg-white rounded mb-5">
+              <canvas id="gg" width="20" height="10"> </canvas>
+            </div>
+      `;
+      var container = document.getElementById("cg");
+      container.innerHTML = htmlElements;
+
+      if(text=="CSE101"){
+
+        const studentPloPerCourse = document.getElementById("gg");
+          if (studentPloPerCourse != null) {
+            let PloPerCourse = studentPloPerCourse.getContext("2d");
+
+            let chart3 = new Chart(PloPerCourse, {
+              type: "bar",
+              data: {
+                labels: [
+                  "PLO01",
+                  "PLO02",
+                  "PLO03",
+                  "PLO04",
+                  "PLO05",
+                  "PLO06",
+                  "PLO07",
+                  "PLO08",
+                  "PLO09",
+                  "PLO10",
+                  "PLO11",
+                  "PLO12",
+                  "PLO13",
+                ],
+                datasets: [
+                  {
+                    label: "Mark of Student in each PLO",
+                    data: [91, 58, 54, 94, 24, 76, 35, 0, 95, 00, 0, 54, 75],
+                    backgroundColor: ["orange"],
+                    hoverBorderWidth: 2,
+                    hoverBorderColor: "black",
+                  },
+                  {
+                    label: "Average mark of all Students in the selected course",
+                    data: [88, 75, 63, 75, 55, 73, 44, 0, 79, 0, 0, 61, 55],
+                    backgroundColor: ["blue"],
+                    hoverBorderWidth: 2,
+                    hoverBorderColor: "black",
+                  },
+                ],
+              },
+              options: {
+                responsive: true,
+                plugins: {
+                  legend: {
+                    position: "top",
+                  },
+                  title: {
+                    display: true,
+                    text: "Marks in each PLO of the selected Student",
+                  },
+                },
+              },
+            });
+          }
+      }else if(text=="CSE203"){
+
+        const studentPloPerCourse = document.getElementById("gg");
+          if (studentPloPerCourse != null) {
+            let PloPerCourse = studentPloPerCourse.getContext("2d");
+
+            let chart3 = new Chart(PloPerCourse, {
+              type: "bar",
+              data: {
+                labels: [
+                  "PLO01",
+                  "PLO02",
+                  "PLO03",
+                  "PLO04",
+                  "PLO05",
+                  "PLO06",
+                  "PLO07",
+                  "PLO08",
+                  "PLO09",
+                  "PLO10",
+                  "PLO11",
+                  "PLO12",
+                  "PLO13",
+                ],
+                datasets: [
+                  {
+                    label: "Mark of Student in each PLO",
+                    data: [91, 58, 54, 94, 24, 76, 35, 0, 95, 52, 0, 54, 75],
+                    backgroundColor: ["orange"],
+                    hoverBorderWidth: 2,
+                    hoverBorderColor: "black",
+                  },
+                  {
+                    label: "Average mark of all Students in the selected course",
+                    data: [88, 75, 63, 75, 55, 73, 44, 0, 79, 71, 0, 61, 55],
+                    backgroundColor: ["blue"],
+                    hoverBorderWidth: 2,
+                    hoverBorderColor: "black",
+                  },
+                ],
+              },
+              options: {
+                responsive: true,
+                plugins: {
+                  legend: {
+                    position: "top",
+                  },
+                  title: {
+                    display: true,
+                    text: "Marks in each PLO of the selected Student",
+                  },
+                },
+              },
+            });
+          }
+        }else if(text=="CSE303"){
+
+        const studentPloPerCourse = document.getElementById("gg");
+          if (studentPloPerCourse != null) {
+            let PloPerCourse = studentPloPerCourse.getContext("2d");
+
+            let chart3 = new Chart(PloPerCourse, {
+              type: "bar",
+              data: {
+                labels: [
+                  "PLO01",
+                  "PLO02",
+                  "PLO03",
+                  "PLO04",
+                  "PLO05",
+                  "PLO06",
+                  "PLO07",
+                  "PLO08",
+                  "PLO09",
+                  "PLO10",
+                  "PLO11",
+                  "PLO12",
+                  "PLO13",
+                ],
+                datasets: [
+                  {
+                    label: "Mark of Student in each PLO",
+                    data: [91, 58, 54, 94, 24, 76, 35, 0, 0, 0, 0, 54, 75],
+                    backgroundColor: ["orange"],
+                    hoverBorderWidth: 2,
+                    hoverBorderColor: "black",
+                  },
+                  {
+                    label: "Average mark of all Students in the selected course",
+                    data: [88, 75, 63, 75, 55, 73, 44, 0, 0, 0, 0, 61, 55],
+                    backgroundColor: ["blue"],
+                    hoverBorderWidth: 2,
+                    hoverBorderColor: "black",
+                  },
+                ],
+              },
+              options: {
+                responsive: true,
+                plugins: {
+                  legend: {
+                    position: "top",
+                  },
+                  title: {
+                    display: true,
+                    text: "Marks in each PLO of the selected Student",
+                  },
+                },
+              },
+            });
+          }
+        }            
+    }
+  </script>
+
 </html>

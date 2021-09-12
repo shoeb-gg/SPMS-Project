@@ -27,6 +27,9 @@ def showHm(request):
 def showHmUniversity(request):
     return render(request, 'hmUniversity.html')
 
+def showStudentCourse(request):
+    return render(request, 'studentCourseWise.html')
+
 def facultyStudentReportGenerate(request):
     if request.method=="POST":
         sID = request.POST.get('studentID')

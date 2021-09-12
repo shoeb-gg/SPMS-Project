@@ -101,15 +101,28 @@
     <script>
       function myFunction() { 
         var text = document.getElementById("usrname").value
-        if(text=="f"){
+        var text2 = document.getElementById("pswrd").value
+        if(text=="f" && text2=="123"){
           location.replace("{%url 'facultyDash'%}")
-        }else if(text=="s"){
+        }else if(text=="s" && text2=="123"){
           location.replace("{%url 'studentHome'%}")
-        }else if(text=="h"){
+        }else if(text=="h" && text2=="123"){
           location.replace("{%url 'hmHome'%}")
-        }else if(text==""){
+        }else if(text=="" && text2==""){
           var htmlElements = "";
           htmlElements += `<div class="bg-danger mt-2 rounded p-1"><p class="warning text-light text-center">Please Enter Credentials!</p>
+            </div>`
+          var container = document.getElementById("wrong");
+          container.innerHTML = htmlElements;
+        }else if(text==""){
+          var htmlElements = "";
+          htmlElements += `<div class="bg-danger mt-2 rounded p-1"><p class="warning text-light text-center">Please Enter Username!</p>
+            </div>`
+          var container = document.getElementById("wrong");
+          container.innerHTML = htmlElements;
+        }else if(text2==""){
+          var htmlElements = "";
+          htmlElements += `<div class="bg-danger mt-2 rounded p-1"><p class="warning text-light text-center">Please Enter Password!</p>
             </div>`
           var container = document.getElementById("wrong");
           container.innerHTML = htmlElements;

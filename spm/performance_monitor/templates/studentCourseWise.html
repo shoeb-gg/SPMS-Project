@@ -1,0 +1,43 @@
+{% extends 'studentBase.html'%} {%block student%}
+<div id="content" class="container-fluid bg-dark">
+  <div id="booking" class="section">
+    <div class="section-center">
+      <div class="container">
+        <div class="row">
+          <div class="booking-form container-fluid w-75">
+            <div class="form-header mt-4">
+              <h2 class="text-white font-weight-bold">Course Performance</h2>
+            </div>
+            <form>
+              <div class="row mb-1">
+                <div class="container-fluid">
+                  <div class="form-group">
+                    <h5 class="form-label text-white">Course:</h5>
+                    <select class="form-control h-100" id="course">
+                      <option>CSE101</option>
+                      <option>CSE203</option>
+                      <option>CSE303</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </form>
+            <div class="d-flex justify-content-end">
+              <button
+                onclick="courseGraph()"
+                class="rounded btn-primary pl-5 pr-5 pt-1 pb-1"
+              >
+                Go
+              </button>
+            </div>
+          </div>
+          <div
+            class="booking-form container-fluid w-75 pt-5 pb-1"
+            id="cg"
+          ></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{%endblock student%}

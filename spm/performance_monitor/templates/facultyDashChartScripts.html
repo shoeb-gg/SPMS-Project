@@ -27,7 +27,9 @@
         datasets: [
           {
             label: "% of Students that achieved each PLO",
-            data: [91, 58, 54, 94, 24, 76, 35, 42, 95, 75, 38, 54, 75],
+            data: [
+              450, 456, 255, 189, 299, 511, 400, 788, 122, 444, 09, 666, 333,
+            ],
             backgroundColor: ["green"],
             hoverBorderWidth: 5,
             hoverBorderColor: "black",
@@ -105,60 +107,6 @@
           },
           y: {
             stacked: true,
-          },
-        },
-      },
-    });
-  }
-
-  const studentPloPerCourse = document.getElementById("y");
-  if (studentPloPerCourse != null) {
-    let PloPerCourse = studentPloPerCourse.getContext("2d");
-
-    let chart3 = new Chart(PloPerCourse, {
-      type: "bar",
-      data: {
-        labels: [
-          "PLO01",
-          "PLO02",
-          "PLO03",
-          "PLO04",
-          "PLO05",
-          "PLO06",
-          "PLO07",
-          "PLO08",
-          "PLO09",
-          "PLO10",
-          "PLO11",
-          "PLO12",
-          "PLO13",
-        ],
-        datasets: [
-          {
-            label: "Mark of Student in each PLO",
-            data: [91, 58, 54, 94, 24, 76, 35, 42, 95, 75, 38, 54, 75],
-            backgroundColor: ["orange"],
-            hoverBorderWidth: 5,
-            hoverBorderColor: "black",
-          },
-          {
-            label: "Average mark of all Students in the selected course",
-            data: [88, 75, 63, 75, 55, 73, 44, 66, 79, 71, 43, 61, 55],
-            backgroundColor: ["blue"],
-            hoverBorderWidth: 5,
-            hoverBorderColor: "black",
-          },
-        ],
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: {
-            position: "top",
-          },
-          title: {
-            display: true,
-            text: "Marks in each PLO of the selected Student",
           },
         },
       },
