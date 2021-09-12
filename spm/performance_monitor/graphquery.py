@@ -21,7 +21,7 @@ def getStudentWisePLO(student_id):
                             performance_monitor_plo_t p
                         WHERE en.student_id = '{}'
                             AND en.enrollmentID = e.enrollment_id
-                            AND e.assessment_id = a.assessmentNo
+                            AND e.assessment_id = a.assessmentID
                             AND a.co_id = c.coID
                             AND c.plo_id = '{}'
                         GROUP BY en.section_id
@@ -55,7 +55,7 @@ def getDepartmentWisePLO(departmentID):
                             WHERE st.department_id = '{}'
                             AND st.studentID = en.student_id
                             AND en.enrollmentID = e.enrollment-id
-                            AND e.assessmentID = a.assessmentNo
+                            AND e.assessmentID = a.assessmentID
                             AND a.coID = c.coID
                             AND c.ploID = '{}'
                             GROUP BY en.sectionID
@@ -90,7 +90,7 @@ def getUniversityWisePLO(UniversitytName):
                             WHERE st.university_name = '{}'
                             AND st.studentID = en.student_id
                             AND en.enrollmentID = e.enrollment_id
-                            AND e.assessmentID = a.assessmentNo
+                            AND e.assessmentID = a.assessmentID
                             AND a.coID = c.co_id
                             AND c.ploID = '{}'
                             GROUP BY u.universityName
@@ -125,7 +125,7 @@ def getNoOfPLOAchieved(studentID):
                                 performance_monitor_section_t s
                             WHERE en.studentID = '{}'
                             AND en.enrollmentID = e.enrollment_id
-                                AND e.assessmentID = a.assessmentNo
+                                AND e.assessmentID = a.assessmentID
                                 AND a.coID = c.co_id
                                 AND c.ploID = p.ploNo
                             GROUP BY  studentID,p.ploNo
@@ -164,7 +164,7 @@ def getNoOfPLOAttempted(studentID):
                                 performance_monitor_section_t s
                             WHERE en.student_id = '{}'
                             AND en.enrollmentID = e.enrollment_id
-                                AND e.assessmentID = a.assessmentNo
+                                AND e.assessmentID = a.assessmentID
                                 AND a.coID = c.coID
                                 AND c.ploID = p.ploNo
                             GROUP BY  studentID,p.ploNo
@@ -205,10 +205,10 @@ def getProgramAchievement(prog):
                                                 performance_monitor_co_t c,
                                                 performance_monitor_plo_t p,
                                                 performance_monitor_program_t pr
-                                        WHERE p.program_id = pr.programID
-                                            AND pr.programID = '{}'
+                                        WHERE pr.programID = '{}'
+                                            AND p.program_id = pr.programID
                                             AND en.enrollmentID = e.enrollment_id
-                                            AND e.assessment_id = a.assessmentNo
+                                            AND e.assessment_id = a.assessmentID
                                             AND a.co_id = c.coID
                                             AND c.plo_id = '{}'
                                         GROUP BY en.student_id
@@ -323,7 +323,7 @@ def getNumOfPLOsTaught(faculty_id):
                                     WHERE en.enrollmentID = e.enrollment_id
                                         AND en.section_id = sec.coID
                                         AND faculty_id = '{}'
-                                        AND e.assessment_id = a.assessmentNo
+                                        AND e.assessment_id = a.assessmentID
                                         AND a.co_id = c.coID
                                         AND c.plo_id = p.ploNo
                                     GROUP BY student_id, c.course_id, c.coNo, p.ploNo
@@ -344,6 +344,97 @@ def getNumOfPLOsTaught(faculty_id):
             
     return number
 
+# Average PLO Success Rate
+def getAverageSuccessRate(faculty_id):
+    achieved = 0
+    attempted = 0
+    with connection.cursor() as cursor:
+        cursor.execute('''
+            SELECT AVG(Acheive) AS AVGPloacheivedbyastudent
+            FROM (
+                    SELECT course_id, coNo, ploNo, COUNT(TotalPlo.PLOpercentage) AS Acheive
+                    FROM (
+                            SELECT co.course_id, co.coNo, p.ploNo, (PLO / TotalComark * 100) AS PLOpercentage
+                            FROM performance_monitor_plo_t p,
+                                performance_monitor_co_t co,
+                                (
+                                    SELECT en.student_id,
+                                            c.course_id,
+                                            c.coNo,
+                                            c.plo_id,
+                                            SUM(DISTINCT e.obtainedMarks) AS PLO,
+                                            SUM(DISTINCT a.marks)         AS TotalCoMark
+                                    FROM performance_monitor_enrollment_t en,
+                                            performance_monitor_section_t sec,
+                                            performance_monitor_evaluation_t e,
+                                            performance_monitor_assessment_t a,
+                                            performance_monitor_co_t c,
+                                            performance_monitor_plo_t p
+                                    WHERE en.enrollmentID = e.enrollment_id
+                                        AND en.section_id = sec.id
+                                        AND faculty_id = '{}'
+                                        AND e.assessment_id = a.assessmentID
+                                        AND a.co_id = c.id
+                                        AND c.plo_id = p.ploNo
+                                    GROUP BY student_id, c.course_id, c.coNo, p.ploNo
+                                ) ploPer
+                            WHERE co.coNo = ploPer.coNo
+                                AND p.ploNo = ploPer.plo_id
+                                AND co.course_id = ploPer.course_id
+                            GROUP BY student_id, co.course_id, co.coNo, ploNo
+                            HAVING PLOpercentage >= 40
+                        ) TotalPlo
+
+                    GROUP BY course_id, coNo, ploNo
+                )
+        '''.format(faculty_id))
+        achieved = cursor.fetchone()[0]
+        if achieved is None:
+            achieved = 0
+            
+        cursor.execute('''
+            SELECT AVG(Acheive) AS AVGPloacheivedbyastudent
+            FROM (
+                    SELECT course_id, coNo, ploNo, COUNT(TotalPlo.PLOpercentage) AS Acheive
+                    FROM (
+                            SELECT co.course_id, co.coNo, p.ploNo, (PLO / TotalComark * 100) AS PLOpercentage
+                            FROM performance_monitor_plo_t p,
+                                performance_monitor_co_t co,
+                                (
+                                    SELECT en.student_id,
+                                            c.course_id,
+                                            c.coNo,
+                                            c.plo_id,
+                                            SUM(DISTINCT e.obtainedMarks) AS PLO,
+                                            SUM(DISTINCT a.marks)         AS TotalCoMark
+                                    FROM performance_monitor_enrollment_t en,
+                                            performance_monitor_section_t sec,
+                                            performance_monitor_evaluation_t e,
+                                            performance_monitor_assessment_t a,
+                                            performance_monitor_co_t c,
+                                            performance_monitor_plo_t p
+                                    WHERE en.enrollmentID = e.enrollment_id
+                                        AND en.section_id = sec.id
+                                        AND faculty_id = '{}'
+                                        AND e.assessment_id = a.assessmentID
+                                        AND a.co_id = c.id
+                                        AND c.plo_id = p.ploNo
+                                    GROUP BY student_id, c.course_id, c.coNo, p.ploNo
+                                ) ploPer
+                            WHERE co.coNo = ploPer.coNo
+                                AND p.ploNo = ploPer.plo_id
+                                AND co.course_id = ploPer.course_id
+                            GROUP BY student_id, co.course_id, co.coNo, ploNo
+                        ) TotalPlo
+
+                    GROUP BY course_id, coNo, ploNo
+                )
+        '''.format(faculty_id))
+        attempted = cursor.fetchone()[0]
+        if attempted is None:
+            attempted = 0
+            
+    return np.round(achieved / attempted * 100, 1)
 
 # Num of Sections faculty Taking
 def getNumOfSections(faculty_id):
