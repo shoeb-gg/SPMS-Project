@@ -47,7 +47,7 @@
                 </button>
               </div>
             </form>
-
+            <hr class="solid mt-5 w-100" />
             <div>
               <div class="form-header mt-5 pt-2">
                 <h2 class="text-white d-flex font-weight-bold">
@@ -79,20 +79,6 @@
             </div>
 
             <div>
-              <div class="form-header mt-5">
-                <h2 class="text-white d-flex font-weight-bold">
-                  Assessment Performance of Each Student
-                </h2>
-              </div>
-              <div class="form-group mt-2">
-                <h5 class="form-label text-white">Total Students:</h5>
-                <input
-                  class="form-control"
-                  type="text"
-                  placeholder="Enter the total number of students"
-                  id="totalStudents"
-                />
-              </div>
               <div class="form-group mt-4">
                 <h5 class="form-label text-white">Number Of Questions:</h5>
                 <input
@@ -106,7 +92,7 @@
                 <button
                   class="rounded mt-1 btn-primary pl-5 pr-5 pt-1 pb-1"
                   id="coGet"
-                  onclick="studentsCreate()"
+                  onclick="qCreate()"
                   ;
                   return
                   false;
@@ -115,12 +101,40 @@
                 </button>
               </div>
             </div>
+            <div class="mb-5 mt-3" id="qSpace"></div>
+            <hr class="solid mt-5 w-100" />
+            <div class="form-header mt-5">
+              <h2 class="text-white d-flex font-weight-bold">
+                Assessment Performance of Each Student
+              </h2>
+            </div>
+            <div class="form-group mt-2">
+              <h5 class="form-label text-white">Total Students:</h5>
+              <input
+                class="form-control"
+                type="text"
+                placeholder="Enter the total number of students"
+                id="totalStudents"
+              />
+            </div>
+            <div class="d-flex justify-content-end">
+              <button
+                class="rounded mt-1 btn-primary pl-5 pr-5 pt-1 pb-1"
+                id="coGet"
+                onclick="studentsCreate()"
+                ;
+                return
+                false;
+              >
+                GO
+              </button>
+            </div>
             <div class="mb-5" id="studentSpace"></div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-{%endblock content%}
+  {%endblock content%}
+</div>

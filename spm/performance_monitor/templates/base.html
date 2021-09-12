@@ -72,6 +72,9 @@
       .crdh4{
         background-color: rgb(150, 97, 0);
       }
+      hr.solid {
+        border-top: 5px solid rgb(255, 255, 255);
+      }
     </style>
   </head>
   <body>
@@ -144,6 +147,19 @@
         </div>
         `;        
       }
+      htmlElements += `
+        <div class="d-flex justify-content-end">
+                <button
+                  class="rounded mt-3 btn-success pl-5 pr-5 pt-1 pb-1"
+                  id="coGet"                  
+                  ;
+                  return
+                  false;
+                >
+                  Submit
+                </button>
+              </div>
+      `
       var container = document.getElementById("mapSpace");
       container.innerHTML = htmlElements;      
     }
@@ -156,7 +172,7 @@
       var htmlElements = "";
       for (var i = 0; i < s; i++) {
         htmlElements += `
-        <div class="mt-5"> 
+        <div class="mt-4"> 
           <h7 class="mr-1 text-white">Student ${i+1}:</h7>       
           <input
             class="form-control"
@@ -167,19 +183,10 @@
         `;
         for (var j = 0; j < q; j++) {
           htmlElements += `
-          <div class="d-flex justify-content-between mt-2">
-            <h6 class="mr-1 mt-3 text-white">Q${j+1}:</h6>
-            <input class="form-control mr-1 ml-1 mt-2" type="text" placeholder="CO Number" />
-            <input
-              class="form-control mr-1 ml-1 mt-2"
-              type="text"
-              placeholder="Total for Question"
-            />
-            <input
-              class="form-control ml-1 mt-2"
-              type="text"
-              placeholder="% Threshold to Pass"
-            />
+          <div class="d-flex justify-content-between mt-1">
+            <h6 class="mr-1 mt-3 text-white">Question${j+1}:</h6>
+            <input class="form-control mr-1 ml-1 mt-2" type="text" placeholder="Marks Achieved in the Question" />
+            
           </div>
           `;
         }
@@ -187,9 +194,8 @@
       htmlElements += `
         <div class="d-flex justify-content-end">
                 <button
-                  class="rounded mt-3 btn-primary pl-5 pr-5 pt-1 pb-1"
-                  id="coGet"
-                  onclick="studentsCreate()"
+                  class="rounded mt-3 btn-success pl-5 pr-5 pt-1 pb-1"
+                  id="coGet"                  
                   ;
                   return
                   false;
@@ -202,6 +208,49 @@
       container.innerHTML = htmlElements;      
     }
 
+
+    function qCreate() {
+      var text = document.getElementById("totalQuestions").value;
+      var b = parseInt(text);
+      var htmlElements = "";
+      for (var i = 0; i < b; i++) {
+        htmlElements += `
+        <h6 class="mr-1 mt-1 text-white">Qustion ${i+1}:</h6>
+        <div class="d-flex justify-content-between">
+          <input
+            class="form-control mr-2 mb-3"
+            type="text"
+            placeholder="Enter the Total Marks"
+          />
+          <input
+            class="form-control ml-2 mb-3"
+            type="text"
+            placeholder="Enter the CO Number"
+          />
+          <input
+            class="form-control ml-2 mb-3"
+            type="text"
+            placeholder="Enter the Pass Threshold"
+          />
+        </div>
+        `;        
+      }
+      htmlElements += `
+        <div class="d-flex justify-content-end">
+                <button
+                  class="rounded mt-3 btn-success pl-5 pr-5 pt-1 pb-1"
+                  id="coGet"                  
+                  ;
+                  return
+                  false;
+                >
+                  Submit
+                </button>
+              </div>
+      `
+      var container = document.getElementById("qSpace");
+      container.innerHTML = htmlElements;      
+    }
 
   </script>
   {% include "facultyDashChartScripts.html" %}
